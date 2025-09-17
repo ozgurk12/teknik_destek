@@ -4,14 +4,21 @@ from sqlalchemy import create_engine
 
 from app.core.config import settings
 
-# Async engine for FastAPI
+# Async engine for FastAPI with optimized pooling for concurrent users
 async_engine = create_async_engine(
     settings.DATABASE_URL,
     echo=settings.DEBUG,
     future=True,
     pool_pre_ping=True,
-    pool_size=10,
-    max_overflow=20
+    pool_size=settings.DB_POOL_SIZE,  # Use config values
+    max_overflow=settings.DB_MAX_OVERFLOW,
+    pool_timeout=settings.DB_POOL_TIMEOUT,
+    pool_recycle=settings.DB_POOL_RECYCLE,
+    connect_args={
+        "server_settings": {"jit": "off"},
+        "command_timeout": 60,
+        "timeout": 60
+    }
 )
 
 # Async session factory

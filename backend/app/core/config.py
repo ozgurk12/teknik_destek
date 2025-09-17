@@ -1,6 +1,6 @@
 from typing import List, Optional
 from pydantic_settings import BaseSettings
-from pydantic import field_validator
+from pydantic import field_validator, Field
 import os
 from pathlib import Path
 
@@ -10,13 +10,24 @@ class Settings(BaseSettings):
     PROJECT_NAME: str = "EduPage Kids Activity Generator"
     VERSION: str = "1.0.0"
     DEBUG: bool = True
-    
+
     # Database
     POSTGRES_HOST: str
     POSTGRES_PORT: str = "5432"
     POSTGRES_USER: str
     POSTGRES_PASSWORD: str
     POSTGRES_DB: str
+
+    # Connection Pool Settings for Multi-User Support (5+ concurrent users)
+    DB_POOL_SIZE: int = Field(default=20, env="DB_POOL_SIZE")
+    DB_MAX_OVERFLOW: int = Field(default=30, env="DB_MAX_OVERFLOW")
+    DB_POOL_TIMEOUT: int = Field(default=30, env="DB_POOL_TIMEOUT")
+    DB_POOL_RECYCLE: int = Field(default=3600, env="DB_POOL_RECYCLE")
+
+    # Performance Settings
+    WORKERS: int = Field(default=5, env="WORKERS")
+    MAX_CONCURRENT_REQUESTS: int = Field(default=100, env="MAX_CONCURRENT_REQUESTS")
+    REQUEST_TIMEOUT: int = Field(default=60, env="REQUEST_TIMEOUT")
     
     @property
     def DATABASE_URL(self) -> str:

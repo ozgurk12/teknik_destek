@@ -14,6 +14,10 @@ services:
       - POSTGRES_DB=edupage_kids
       - GOOGLE_APPLICATION_CREDENTIALS=/app/credentials/google-service-account.json
       - VERTEX_AI_PROJECT_ID=${VERTEX_AI_PROJECT_ID}
+      - WORKERS=5
+      - DB_POOL_SIZE=20
+      - DB_MAX_OVERFLOW=30
+      - DB_POOL_TIMEOUT=30
     volumes:
       - ./credentials:/app/credentials:ro
       - ./backend/.env:/app/.env:ro
@@ -25,6 +29,11 @@ services:
       interval: 30s
       timeout: 10s
       retries: 3
+    deploy:
+      resources:
+        limits:
+          cpus: '2'
+          memory: 2G
 
   frontend:
     build: ./frontend

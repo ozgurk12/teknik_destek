@@ -1,5 +1,7 @@
 import os
 import json
+import asyncio
+import threading
 from typing import List, Dict, Optional
 from google.oauth2 import service_account
 import vertexai
@@ -9,52 +11,69 @@ import logging
 
 logger = logging.getLogger(__name__)
 
+# Thread-local storage for model instances
+_thread_local = threading.local()
+
 class VertexAIService:
     """Service for generating activities using Google Vertex AI"""
-    
+
+    # Class-level cache for credentials to avoid re-loading
+    _credentials = None
+    _credentials_lock = threading.Lock()
+
     def __init__(self):
         self._initialize_vertex_ai()
         
+    @classmethod
+    def _get_credentials(cls):
+        """Get or create cached credentials (thread-safe)"""
+        if cls._credentials is None:
+            with cls._credentials_lock:
+                if cls._credentials is None:  # Double-check pattern
+                    credentials_path = settings.GOOGLE_APPLICATION_CREDENTIALS
+                    if not credentials_path:
+                        credentials_path = "../credentials/google-service-account.json"
+
+                    if not os.path.isabs(credentials_path):
+                        credentials_path = os.path.abspath(credentials_path)
+
+                    cls._credentials = service_account.Credentials.from_service_account_file(
+                        credentials_path,
+                        scopes=["https://www.googleapis.com/auth/cloud-platform"]
+                    )
+        return cls._credentials
+
     def _initialize_vertex_ai(self):
         """Initialize Vertex AI with service account credentials"""
         try:
-            # Get credentials path
-            credentials_path = settings.GOOGLE_APPLICATION_CREDENTIALS
-            if not credentials_path:
-                credentials_path = "../credentials/google-service-account.json"
-            
-            # Resolve absolute path
-            if not os.path.isabs(credentials_path):
-                credentials_path = os.path.abspath(credentials_path)
-            
-            # Load service account credentials
-            credentials = service_account.Credentials.from_service_account_file(
-                credentials_path,
-                scopes=["https://www.googleapis.com/auth/cloud-platform"]
-            )
-            
+            # Get cached credentials
+            credentials = self._get_credentials()
+
             # Initialize Vertex AI
             vertexai.init(
                 project=settings.VERTEX_AI_PROJECT_ID,
                 location=settings.VERTEX_AI_LOCATION,
                 credentials=credentials
             )
-            
-            # Initialize the model
-            self.model = GenerativeModel(
+
+            logger.info("Vertex AI initialized successfully")
+
+        except Exception as e:
+            logger.error(f"Failed to initialize Vertex AI: {str(e)}")
+            raise
+
+    def _get_model(self):
+        """Get thread-local model instance for concurrent requests"""
+        if not hasattr(_thread_local, 'model'):
+            _thread_local.model = GenerativeModel(
                 model_name=settings.VERTEX_AI_MODEL,
                 generation_config=GenerationConfig(
                     temperature=0.7,
                     top_p=0.9,
-                    max_output_tokens=32768,  # Maximum tokens for complete detailed responses
+                    max_output_tokens=32768,
                 )
             )
-            
-            logger.info("Vertex AI initialized successfully")
-            
-        except Exception as e:
-            logger.error(f"Failed to initialize Vertex AI: {str(e)}")
-            raise
+        return _thread_local.model
     
     def create_activity_prompt(self, kazanimlar: List[Dict], custom_prompt: Optional[str] = None) -> str:
         """Create a detailed prompt for activity generation"""
@@ -289,14 +308,31 @@ class VertexAIService:
         
         return prompt
     
-    async def generate_activity(self, kazanimlar: List[Dict], custom_prompt: Optional[str] = None) -> Optional[Dict]:
-        """Generate an activity based on selected learning outcomes"""
+    async def generate_activity_async(self, kazanimlar: List[Dict], custom_prompt: Optional[str] = None) -> Optional[Dict]:
+        """Generate activity asynchronously for concurrent requests"""
+        # Create prompt
+        prompt = self.create_activity_prompt(kazanimlar, custom_prompt)
+
+        # Run generation in thread pool to avoid blocking
+        loop = asyncio.get_event_loop()
+        result = await loop.run_in_executor(
+            None,  # Uses default ThreadPoolExecutor
+            self._generate_content_sync,
+            prompt,
+            kazanimlar
+        )
+
+        return result
+
+    def _generate_content_sync(self, prompt: str, kazanimlar: List[Dict]) -> Optional[Dict]:
+        """Synchronous content generation (runs in thread pool)"""
         try:
-            prompt = self.create_activity_prompt(kazanimlar, custom_prompt)
-            
+            # Get thread-local model instance
+            model = self._get_model()
+
             # Generate content using Vertex AI
-            response = self.model.generate_content(prompt)
-            
+            response = model.generate_content(prompt)
+
             if not response or not response.text:
                 logger.error("Empty response from Vertex AI")
                 return None
@@ -323,16 +359,21 @@ class VertexAIService:
             activity_data['prompt_used'] = prompt[:1000]  # Store first 1000 chars
             activity_data['ai_generated'] = True
             activity_data['model_version'] = settings.VERTEX_AI_MODEL
-            
+
             # Convert nested JSON structure to flat structure for database
             activity_data = self._flatten_activity_data(activity_data)
-            
+
             logger.info(f"Activity generated successfully: {activity_data.get('etkinlik_adi', 'Unknown')}")
             return activity_data
-            
+
         except Exception as e:
             logger.error(f"Error generating activity: {str(e)}")
             return None
+
+    async def generate_activity(self, kazanimlar: List[Dict], custom_prompt: Optional[str] = None) -> Optional[Dict]:
+        """Generate an activity based on selected learning outcomes (backward compatible)"""
+        # Use async version internally
+        return await self.generate_activity_async(kazanimlar, custom_prompt)
     
     def _parse_json_response(self, text: str) -> Optional[Dict]:
         """Parse JSON from AI response with better error handling"""
