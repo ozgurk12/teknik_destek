@@ -1,0 +1,80 @@
+Ana_Beceri_Kategorisi,Ana_Beceri_Kodu,Ana_Beceri_Adi,Alt_Beceri_Kodu,Alt_Beceri_Adi,Surec_Bileseni_Kodu,Aciklama
+KB1. Temel Beceriler,KB1.1,Saymak,,,,
+KB1. Temel Beceriler,KB1.2,Okumak,,,,
+KB1. Temel Beceriler,KB1.3,Yazmak,,,,
+KB1. Temel Beceriler,KB1.4,Çizmek,,,,
+KB1. Temel Beceriler,KB1.5,Bulmak,,,,
+KB1. Temel Beceriler,KB1.6,Seçmek,,,,
+KB1. Temel Beceriler,KB1.7,Belirlemek,,,,
+KB1. Temel Beceriler,KB1.8,İşaret Etmek,,,,
+KB1. Temel Beceriler,KB1.9,Ölçmek,,,,
+KB1. Temel Beceriler,KB1.10,Sunmak,,,,
+KB1. Temel Beceriler,KB1.11,Çevirmek,,,,
+KB1. Temel Beceriler,KB1.12,Kaydetmek,,,,
+KB2. Bütünleşik Beceriler,KB2.1,Çelişki Giderme Becerisi,,,İki veya daha fazla olay/konu/durum arasındaki tutarsızlığı düzeltme çabasını ifade eder.
+KB2. Bütünleşik Beceriler,KB2.1,Çelişki Giderme Becerisi,,,KB2.1.SB1,Çelişkinin/tutarsızlığın nerede olduğunu belirlemek
+KB2. Bütünleşik Beceriler,KB2.1,Çelişki Giderme Becerisi,,,KB2.1.SB2,İlgili hedefe ulaşmak için olası yolları araştırmak
+KB2. Bütünleşik Beceriler,KB2.1,Çelişki Giderme Becerisi,,,KB2.1.SB3,Uygun yolu seçerek harekete geçmek ve takip etmek
+KB2. Bütünleşik Beceriler,KB2.1,Çelişki Giderme Becerisi,,,KB2.1.SB4,Elde edilen çözümü değerlendirmek
+KB2. Bütünleşik Beceriler,KB2.2,Gözlemleme Becerisi,,,Doğal ortamdaki nesne ve olaylara ait özelliklerin duyular aracılığıyla belirlenmesini ifade eder.
+KB2. Bütünleşik Beceriler,KB2.2,Gözlemleme Becerisi,,,KB2.2.SB1,Gözleme ilişkin amaç-ölçüt belirlemek
+KB2. Bütünleşik Beceriler,KB2.2,Gözlemleme Becerisi,,,KB2.2.SB2,Uygun veri toplama aracı ile veri toplamak
+KB2. Bütünleşik Beceriler,KB2.2,Gözlemleme Becerisi,,,KB2.2.SB3,Toplanan verileri sınıflandırmak ve kaydetmek
+KB2. Bütünleşik Beceriler,KB2.3,Özetleme Becerisi,,,Bir metnin ya da konuşmanın özünü anlamayı anladıklarını mantıksal bir çerçevede ana hatlarıyla kısaltarak yorumlamayı ve kendi cümleleri ile aktarmayı/dönüştürmeyi ifade eder.
+KB2. Bütünleşik Beceriler,KB2.3,Özetleme Becerisi,,,KB2.3.SB1,Metin/olay/konu/durum ile ilgili çözümleme yapmak
+KB2. Bütünleşik Beceriler,KB2.3,Özetleme Becerisi,,,KB2.3.SB2,Metin/olay/konu/durum ile ilgili sınıflandırma yapmak
+KB2. Bütünleşik Beceriler,KB2.3,Özetleme Becerisi,,,KB2.3.SB3,Metin/olay/konu/durumu yorumlamak (kendi cümleleri ile aktarmak)
+KB2. Bütünleşik Beceriler,KB2.4,Çözümleme Becerisi,,,Bir bütünü parçalarına ayırarak parçalar arasındaki ilişkileri belirlemeyi ifade eder.
+KB2. Bütünleşik Beceriler,KB2.5,Sınıflandırma Becerisi,,,Nesne olgu ve olayları gözlem ya da ölçme sonucunda belirlenen özelliklerine ve birbirleriyle ilişkilerine göre gruplara ayırmayı ifade eder.
+KB2. Bütünleşik Beceriler,KB2.5,Sınıflandırma Becerisi,,,KB2.5.SB1,Nesne olgu ve olaylara ilişkin değişkenleri/ölçütleri belirlemek
+KB2. Bütünleşik Beceriler,KB2.5,Sınıflandırma Becerisi,,,KB2.5.SB2,Nesne olgu ve olayları ayrıştırmak veya bölmek
+KB2. Bütünleşik Beceriler,KB2.5,Sınıflandırma Becerisi,,,KB2.5.SB3,Nesne olgu ve olayları tasnif etmek
+KB2. Bütünleşik Beceriler,KB2.5,Sınıflandırma Becerisi,,,KB2.5.SB4,Nesne olgu ve olayları etiketlemek
+KB2. Bütünleşik Beceriler,KB2.6,Bilgi Toplama Becerisi,,,Olay/konu/durum ile ilgili istenen bilgiyi çeşitli yöntemlerle elde etmeyi doğrulamayı ve kaydetmeyi ifade eder.
+KB2. Bütünleşik Beceriler,KB2.6,Bilgi Toplama Becerisi,,,KB2.6.SB1,İstenen bilgiye ulaşmak için kullanacağı araçları belirlemek
+KB2. Bütünleşik Beceriler,KB2.6,Bilgi Toplama Becerisi,,,KB2.6.SB2,Belirlediği aracı kullanarak olay/konu/durum hakkındaki bilgileri bulmak
+KB2. Bütünleşik Beceriler,KB2.6,Bilgi Toplama Becerisi,,,KB2.6.SB3,Olay/konu/durumla ilgili ulaşılan bilgileri doğrulamak
+KB2. Bütünleşik Beceriler,KB2.6,Bilgi Toplama Becerisi,,,KB2.6.SB4,Olay/konu/durumla ilgili ulaşılan bilgileri kaydetmek
+KB2. Bütünleşik Beceriler,KB2.7,Karşılaştırma Becerisi,,,Birden fazla kavram veya durum arasındaki benzerlik ve farklılıkların belirlenmesini ifade eder.
+KB2. Bütünleşik Beceriler,KB2.7,Karşılaştırma Becerisi,,,KB2.7.SB1,Birden fazla kavram veya duruma ilişkin özellikleri belirlemek
+KB2. Bütünleşik Beceriler,KB2.7,Karşılaştırma Becerisi,,,KB2.7.SB2,Belirlenen özelliklere ilişkin benzerlikleri listelemek
+KB2. Bütünleşik Beceriler,KB2.7,Karşılaştırma Becerisi,,,KB2.7.SB3,Belirlenen özelliklere ilişkin farklılıkları listelemek
+KB2. Bütünleşik Beceriler,KB2.8,Sorgulama Becerisi,,,Olay/konu/duruma ilişkin farkında olma anlamlı sorular sorma bilgi edinme ve bunları değerlendirme sürecini ifade eder.
+KB2. Bütünleşik Beceriler,KB2.8,Sorgulama Becerisi,,,KB2.8.SB1,Merak ettiği konuyu tanımlamak
+KB2. Bütünleşik Beceriler,KB2.8,Sorgulama Becerisi,,,KB2.8.SB2,İlgili konu hakkında sorular sormak (5N1K)
+KB2. Bütünleşik Beceriler,KB2.8,Sorgulama Becerisi,,,KB2.8.SB3,İlgili konu hakkında bilgi toplamak
+KB2. Bütünleşik Beceriler,KB2.8,Sorgulama Becerisi,,,KB2.8.SB4,Toplanan bilgilerin doğruluğunu değerlendirmek
+KB2. Bütünleşik Beceriler,KB2.8,Sorgulama Becerisi,,,KB2.8.SB5,Toplanan bilgiler üzerinden çıkarım yapmak
+KB2. Bütünleşik Beceriler,KB2.9,Genelleme Becerisi,,,Çeşitli olay/konu/durumları araştırma ve aralarındaki özellikleri ilişkilendirip genişleterek yargıya varmayı ifade eder.
+KB2. Bütünleşik Beceriler,KB2.10,Çıkarım Yapma Becerisi,,,Önerme ve varsayımlara dayalı olarak sonuca ulaşmayı ifade eder.
+KB2. Bütünleşik Beceriler,KB2.10,Çıkarım Yapma Becerisi,,,KB2.10.SB1,Mevcut bilgisi dâhilinde varsayımda bulunmak
+KB2. Bütünleşik Beceriler,KB2.10,Çıkarım Yapma Becerisi,,,KB2.10.SB2,Örüntüleri listelemek
+KB2. Bütünleşik Beceriler,KB2.10,Çıkarım Yapma Becerisi,,,KB2.10.SB3,Karşılaştırmak
+KB2. Bütünleşik Beceriler,KB2.10,Çıkarım Yapma Becerisi,,,KB2.10.SB4,Önerme sunmak
+KB2. Bütünleşik Beceriler,KB2.10,Çıkarım Yapma Becerisi,,,KB2.10.SB5,Değerlendirmek
+KB2. Bütünleşik Beceriler,KB2.11,Gözleme Dayalı Tahmin Etme Becerisi,,,Mevcut olay/konu/durum ile ilgili ön gözlemlerden veya deneyimlerden yola çıkarak çıkarım yapmayı ve buna ilişkin yargıda bulunmayı ifade eder.
+KB2. Bütünleşik Beceriler,KB2.11,Gözleme Dayalı Tahmin Etme Becerisi,,,KB2.11.SB1,Mevcut olay/konu/duruma ilişkin ön gözlem ve/veya deneyimi ilişkilendirmek
+KB2. Bütünleşik Beceriler,KB2.11,Gözleme Dayalı Tahmin Etme Becerisi,,,KB2.11.SB2,Mevcut olay/konu/duruma ilişkin çıkarım yapmak
+KB2. Bütünleşik Beceriler,KB2.11,Gözleme Dayalı Tahmin Etme Becerisi,,,KB2.11.SB3,Mevcut olay/konu/duruma ilişkin yargıda bulunmak
+KB2. Bütünleşik Beceriler,KB2.14,Yorumlama Becerisi,,,Mevcut olay/konu/durumu bağlamından koparmadan yeniden açıklamayı ifade eder.
+KB2. Bütünleşik Beceriler,KB2.14,Yorumlama Becerisi,,,KB2.14.SB1,Mevcut olay/konu/durumu incelemek
+KB2. Bütünleşik Beceriler,KB2.14,Yorumlama Becerisi,,,KB2.14.SB2,Mevcut olay/konu/durumu bağlamdan kopmadan dönüştürmek
+KB2. Bütünleşik Beceriler,KB2.14,Yorumlama Becerisi,,,KB2.14.SB3,Kendi ifadeleriyle olay/konu/durumu nesnel doğru ve anlamı değiştirmeyecek şekilde yeniden ifade etmek
+KB2. Bütünleşik Beceriler,KB2.15,Yansıtma Becerisi,,,Bir durumu gelecekteki durumlara uygulamak için deneyimlerden yola çıkarak gözden geçirmeyi çıkarımda bulunmayı ve değerlendirmeyi ifade eder.
+KB2. Bütünleşik Beceriler,KB2.16,Muhakeme (Akıl Yürütme) Becerisi,,,Tümevarım/tümdengelim/analoji yaklaşımlarını kullanarak mevcut olay/konu/duruma ilişkin çıkarımlara ulaşma sürecini ifade eder.
+KB2. Bütünleşik Beceriler,KB2.16,Muhakeme (Akıl Yürütme) Becerisi,KB2.16.1,Tümevarıma Dayalı Akıl Yürütme Becerisi,,Mevcut olay/konu/duruma ilişkin gözleme dayalı örüntü oluşturmayı ve genellemeler yapmayı ifade eder.
+KB2. Bütünleşik Beceriler,KB2.16,Muhakeme (Akıl Yürütme) Becerisi,KB2.16.1,Tümevarıma Dayalı Akıl Yürütme Becerisi,KB2.16.1.SB1,Gözlem yapmak
+KB2. Bütünleşik Beceriler,KB2.16,Muhakeme (Akıl Yürütme) Becerisi,KB2.16.1,Tümevarıma Dayalı Akıl Yürütme Becerisi,KB2.16.1.SB2,Örüntü bulmak
+KB2. Bütünleşik Beceriler,KB2.16,Muhakeme (Akıl Yürütme) Becerisi,KB2.16.2,Tümdengelime Dayalı Akıl Yürütme Becerisi,,Olay/konu/duruna ilişkin genelden genele veya genelden özele ilişki kurarak düşünmeyi ifade eder.
+KB2. Bütünleşik Beceriler,KB2.17,Değerlendirme Becerisi,,,Mevcut olay/konu/duruma ilişkin ölçüt belirleyerek ölçme yapmayı ve ölçme sonuçlarını belirlediği ölçütlerle karşılaştırarak yargıda bulunmayı ifade eder.
+KB2. Bütünleşik Beceriler,KB2.17,Değerlendirme Becerisi,,,KB2.17.SB1,Mevcut olay/konu/duruma ilişkin ölçüt belirlemek
+KB2. Bütünleşik Beceriler,KB2.17,Değerlendirme Becerisi,,,KB2.17.SB2,Mevcut olay/konu/duruma ilişkin ölçme yapmak
+KB2. Bütünleşik Beceriler,KB2.17,Değerlendirme Becerisi,,,KB2.17.SB3,Ölçme sonuçlarını belirlediği ölçütlerle karşılaştırmak
+KB2. Bütünleşik Beceriler,KB2.17,Değerlendirme Becerisi,,,KB2.17.SB4,Karşılaştırmalarına ilişkin yargıda bulunmak
+KB2. Bütünleşik Beceriler,KB2.20,Sentezleme Becerisi,,,Parçalar arasında ilişki kurarak parçaları özgün bir bütün oluşturmak yolu ile bir araya getirme sürecini ifade eder.
+KB3. Üst Düzey Beceriler,KB3.2,Problem Çözme Becerisi,,,Karşılaşılan sorunlu durumla baş edebilmek için duruma dair yapılandırma özetleme gözleme dayalı/mevcut bilgiye/veriye dayalı tahmin etme akıl yürütme yansıtma/değerlendirmede bulunmayı kapsayan bilişsel işlemleri yürütebilmeyi ifade eder.
+KB3. Üst Düzey Beceriler,KB3.2,Problem Çözme Becerisi,,,KB3.2.SB1,Problemi tanımlamak
+KB3. Üst Düzey Beceriler,KB3.2,Problem Çözme Becerisi,,,KB3.2.SB2,Problemi özetlemek
+KB3. Üst Düzey Beceriler,KB3.2,Problem Çözme Becerisi,,,KB3.2.SB3,Problemin çözümüne yönelik gözleme dayalı/mevcut bilgiye/veriye dayalı tahmin etmek
+KB3. Üst Düzey Beceriler,KB3.2,Problem Çözme Becerisi,,,KB3.2.SB4,Problemin çözümüne ilişkin yansıtma/değerlendirmede bulunmak
+KB3. Üst Düzey Beceriler,KB3.3,Eleştirel Düşünme Becerisi,,,Karşılaşılan bilgilere ilişkin sorgulama akıl yürütme ve yansıtma becerisini ifade eder.
