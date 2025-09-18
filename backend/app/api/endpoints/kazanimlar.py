@@ -6,9 +6,11 @@ from typing import List, Optional
 from app.db.session import get_db
 from app.models.kazanim import Kazanim
 from app.schemas.kazanim import (
-    KazanimResponse, 
+    KazanimResponse,
     KazanimListResponse,
-    KazanimFilter
+    KazanimFilter,
+    KazanimCreate,
+    KazanimUpdate
 )
 
 router = APIRouter()
@@ -156,3 +158,71 @@ async def get_subjects(
     subjects = [row[0] for row in result if row[0]]
     
     return {"subjects": subjects}
+
+@router.post("/", response_model=KazanimResponse)
+async def create_kazanim(
+    kazanim_data: KazanimCreate,
+    db: AsyncSession = Depends(get_db)
+):
+    """
+    Create a new learning outcome
+    """
+    # Create new kazanim
+    new_kazanim = Kazanim(**kazanim_data.model_dump())
+
+    # Add to database
+    db.add(new_kazanim)
+    await db.commit()
+    await db.refresh(new_kazanim)
+
+    return new_kazanim
+
+@router.put("/{kazanim_id}", response_model=KazanimResponse)
+async def update_kazanim(
+    kazanim_id: int,
+    kazanim_update: KazanimUpdate,
+    db: AsyncSession = Depends(get_db)
+):
+    """
+    Update an existing learning outcome
+    """
+    # Get existing kazanim
+    query = select(Kazanim).where(Kazanim.id == kazanim_id)
+    result = await db.execute(query)
+    kazanim = result.scalar_one_or_none()
+
+    if not kazanim:
+        raise HTTPException(status_code=404, detail="Kazanım bulunamadı")
+
+    # Update fields
+    update_data = kazanim_update.model_dump(exclude_unset=True)
+    for field, value in update_data.items():
+        setattr(kazanim, field, value)
+
+    # Save changes
+    await db.commit()
+    await db.refresh(kazanim)
+
+    return kazanim
+
+@router.delete("/{kazanim_id}")
+async def delete_kazanim(
+    kazanim_id: int,
+    db: AsyncSession = Depends(get_db)
+):
+    """
+    Delete a learning outcome
+    """
+    # Get existing kazanim
+    query = select(Kazanim).where(Kazanim.id == kazanim_id)
+    result = await db.execute(query)
+    kazanim = result.scalar_one_or_none()
+
+    if not kazanim:
+        raise HTTPException(status_code=404, detail="Kazanım bulunamadı")
+
+    # Delete from database
+    await db.delete(kazanim)
+    await db.commit()
+
+    return {"message": "Kazanım başarıyla silindi"}

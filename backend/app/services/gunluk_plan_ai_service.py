@@ -370,7 +370,7 @@ HATIRLATMALAR:
 8. ÖĞRENME ÇIKTILARI: Şablonda verilen formatta kullan
 7. Değerlendirme en az 7-8 soru içermeli
 8. İçerik çerçevesi alanlarını etkinliklere uygun doldur
-9. Sadece JSON döndür, başka açıklama ekleme
+9. Mutlaka geçerli JSON formatında yanıt ver, başka açıklama veya metin ekleme
             """
 
             # Call AI service
@@ -379,9 +379,10 @@ HATIRLATMALAR:
             print(f"Prompt length: {len(prompt)} characters")
 
             try:
-                response = await ai_service.generate_content(prompt)
-                logger.info(f"Received response from Vertex AI: {len(response) if response else 0} characters")
-                print(f"=== VERTEX AI RESPONSE RECEIVED ===")
+                # Use structured JSON output
+                response = await ai_service.generate_content(prompt, use_json_output=True)
+                logger.info(f"Received JSON response from Vertex AI: {len(response) if response else 0} characters")
+                print(f"=== VERTEX AI JSON RESPONSE RECEIVED ===")
                 print(f"Response length: {len(response) if response else 0} characters")
 
                 # Log the actual response for debugging
@@ -397,38 +398,49 @@ HATIRLATMALAR:
             # Parse AI response
             if response:
                 try:
-                    # Clean the response - remove markdown code blocks if present
+                    # Clean potential markdown wrappers even with JSON output mode
                     cleaned_response = response.strip()
                     if cleaned_response.startswith('```json'):
-                        cleaned_response = cleaned_response[7:]  # Remove ```json
-                    if cleaned_response.startswith('```'):
-                        cleaned_response = cleaned_response[3:]  # Remove ```
+                        cleaned_response = cleaned_response[7:]
+                    elif cleaned_response.startswith('```'):
+                        cleaned_response = cleaned_response[3:]
                     if cleaned_response.endswith('```'):
-                        cleaned_response = cleaned_response[:-3]  # Remove trailing ```
+                        cleaned_response = cleaned_response[:-3]
                     cleaned_response = cleaned_response.strip()
 
-                    # Remove any control characters that might cause JSON parsing issues
+                    # Remove invalid control characters that break JSON parsing
                     import re
-                    cleaned_response = re.sub(r'[\x00-\x1f\x7f-\x9f]', ' ', cleaned_response)
-                    # Also remove any tabs and replace with spaces
-                    cleaned_response = cleaned_response.replace('\t', '    ')
+                    # Replace actual newlines, tabs, and other control characters within strings
+                    # This regex finds strings and replaces control chars inside them
+                    def clean_json_string(match):
+                        string_content = match.group(1)
+                        # Replace control characters with escaped versions
+                        string_content = string_content.replace('\n', '\\n')
+                        string_content = string_content.replace('\r', '\\r')
+                        string_content = string_content.replace('\t', '\\t')
+                        # Remove other control characters
+                        string_content = re.sub(r'[\x00-\x1f\x7f-\x9f]', ' ', string_content)
+                        return f'"{string_content}"'
 
+                    # Apply cleaning to all JSON strings
+                    cleaned_response = re.sub(r'"([^"\\]*(?:\\.[^"\\]*)*)"', clean_json_string, cleaned_response)
+
+                    # Since we're using JSON output mode, response should be valid JSON
                     ai_content = json.loads(cleaned_response)
                     logger.info(f"Successfully parsed JSON response with keys: {list(ai_content.keys())}")
                     print(f"=== AI CONTENT PARSED SUCCESSFULLY ===")
                     print(f"Keys in response: {list(ai_content.keys())}")
                 except json.JSONDecodeError as json_error:
                     logger.error(f"Failed to parse JSON response: {str(json_error)}")
-                    logger.info("Attempting to extract partial content from response")
-                    print(f"=== JSON PARSE FAILED - ATTEMPTING PARTIAL EXTRACTION ===")
-                    print(f"Response length: {len(response)} characters")
+                    logger.error(f"JSON Error at position {json_error.pos if hasattr(json_error, 'pos') else 'unknown'}: {json_error.msg}")
+                    logger.info("Response should be valid JSON when using JSON output mode")
+                    print(f"=== UNEXPECTED: JSON PARSE FAILED WITH JSON OUTPUT MODE ===")
+                    print(f"Error: {str(json_error)}")
+                    print(f"Response preview (first 500 chars): {response[:500] if response else 'None'}")
 
-                    # Try to extract as much as we can from the partial response
-                    ai_content = self._extract_partial_content(cleaned_response)
-                    if not ai_content:
-                        # If extraction fails, use default content
-                        ai_content = self._get_default_content()
-                    logger.info(f"Using content with keys: {list(ai_content.keys())}")
+                    # Fallback to default content
+                    ai_content = self._get_default_content()
+                    logger.info(f"Using default content with keys: {list(ai_content.keys())}")
             else:
                 logger.warning("No response from AI, using default content")
                 print(f"=== NO AI RESPONSE, USING DEFAULT ===")

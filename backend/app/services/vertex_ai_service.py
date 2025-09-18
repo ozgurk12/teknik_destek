@@ -56,24 +56,45 @@ class VertexAIService:
                 credentials=credentials
             )
 
+            # Model will be initialized on-demand in _get_model()
+
             logger.info("Vertex AI initialized successfully")
 
         except Exception as e:
             logger.error(f"Failed to initialize Vertex AI: {str(e)}")
             raise
 
-    def _get_model(self):
-        """Get thread-local model instance for concurrent requests"""
-        if not hasattr(_thread_local, 'model'):
-            _thread_local.model = GenerativeModel(
-                model_name=settings.VERTEX_AI_MODEL,
-                generation_config=GenerationConfig(
-                    temperature=0.7,
-                    top_p=0.9,
-                    max_output_tokens=32768,
-                )
-            )
-        return _thread_local.model
+    def _get_model(self, use_json_output=False):
+        """Get thread-local model instance for concurrent requests
+
+        Args:
+            use_json_output: If True, configure model for structured JSON output
+        """
+        model_key = 'json_model' if use_json_output else 'model'
+
+        if not hasattr(_thread_local, model_key):
+            if use_json_output:
+                # Create model with JSON output configuration
+                setattr(_thread_local, model_key, GenerativeModel(
+                    model_name=settings.VERTEX_AI_MODEL,
+                    generation_config=GenerationConfig(
+                        temperature=0.7,
+                        top_p=0.9,
+                        max_output_tokens=32768,
+                        response_mime_type="application/json",
+                    )
+                ))
+            else:
+                # Standard model for text generation
+                setattr(_thread_local, model_key, GenerativeModel(
+                    model_name=settings.VERTEX_AI_MODEL,
+                    generation_config=GenerationConfig(
+                        temperature=0.7,
+                        top_p=0.9,
+                        max_output_tokens=32768,
+                    )
+                ))
+        return getattr(_thread_local, model_key)
     
     def create_activity_prompt(self, kazanimlar: List[Dict], custom_prompt: Optional[str] = None) -> str:
         """Create a detailed prompt for activity generation"""
@@ -134,7 +155,6 @@ class VertexAIService:
         • Süreç odaklı (ürün değil süreç önemli)
         • Hata yapmanın öğrenmenin parçası olduğu güvenli ortam
         • Akran öğrenmesi fırsatları
-        • Aile katılımı önerileri
 
         YARATICILIK VE ÖZGÜNLÜK:
         • Sıradan materyalleri yaratıcı şekilde kullan
@@ -155,6 +175,7 @@ class VertexAIService:
         - Yansıma çemberinde çocukların metacognitive (üst biliş) becerilerini geliştir
         - Uyarlama önerilerinde kapsayıcı eğitim ilkelerini göz önünde bulundur
         - Değerlendirme bölümünü MUTLAKA DOLDUR - boş bırakma
+        - ASLA PARANTEZ İÇİNDE KAZANIM KODU YAZMA! Kodlar veritabanında saklanacak ama metinde görünmeyecek
 
         ÇOK ÖNEMLİ - ETKİNLİK ÇEŞİTLİLİĞİ:
         - HER ETKİNLİK FARKLI BİR TEMADA OLMALI (duyular değil, kazanımlara özgü temalar)
@@ -175,11 +196,11 @@ class VertexAIService:
           "sure": {duration},
           "uygulama_yeri": "En uygun öğrenme ortamı (Sınıf içi/Bahçe/Spor salonu/Sanat atölyesi)",
           "amaclar": [
-            "Bilişsel gelişim: Neden-sonuç ilişkisi kurma, problem çözme becerileri geliştirme",
-            "Sosyal-duygusal gelişim: İşbirliği yapma, empati kurma, duygularını ifade etme",
-            "Dil gelişimi: Kelime dağarcığını genişletme, kendini ifade etme, dinleme becerileri",
-            "Motor gelişim: İnce/kaba motor becerileri, el-göz koordinasyonu, denge",
-            "Öz bakım becerileri: Sorumluluk alma, kurallara uyma, temizlik alışkanlığı"
+            "Çocukların etkinlik konusundaki temel kavramları öğrenmesi ve anlaması",
+            "Çevresindeki nesneleri ve olayları gözlem yoluyla tanıması ve ayırt etmesi",
+            "Problem çözme ve eleştirel düşünme becerilerini geliştirmesi",
+            "Yaratıcılık ve hayal gücünü kullanarak kendini ifade etmesi",
+            "Akranlarıyla işbirliği yaparak sosyal becerilerini güçlendirmesi"
           ],
           "materyaller": [
             "Kazanımlara ve etkinlik içeriğine uygun materyaller listesi",
@@ -215,19 +236,12 @@ class VertexAIService:
               "sure": "{round(duration * 0.15)}-{round(duration * 0.2)} dakika",
               "duzenleme": "Rahat bir oturma düzeni - çember, yarım ay veya minderler üzerinde",
               "sorular": [
-                "HATIRLA: Bugün hangi materyalleri kullandık? Neler yaptık?",
-                "HISSET: Bu etkinlikte kendinizi nasıl hissettiniz? En çok neyi yaparken mutlu oldunuz?",
-                "DÜŞÜN: En zor/kolay kısmı neydi? Neden? Başka nasıl yapabilirdik?",
-                "BAĞLANTI KUR: Öğrendiklerimizi başka nerede kullanabiliriz? Evde/parkta benzer neler yapabiliriz?",
-                "HAYAL ET: Bu etkinliği tekrar yapsak neyi farklı yapardınız?"
+                "Bugün hangi materyalleri kullandık? Neler yaptık?",
+                "Bu etkinlikte kendinizi nasıl hissettiniz? En çok neyi yaparken mutlu oldunuz?",
+                "En zor/kolay kısmı neydi? Neden? Başka nasıl yapabilirdik?",
+                "Öğrendiklerimizi başka nerede kullanabiliriz? Evde/parkta benzer neler yapabiliriz?",
+                "Bu etkinliği tekrar yapsak neyi farklı yapardınız?"
               ],
-              "ogretmen_yonlendirmeleri": [
-                "Her çocuğa söz hakkı ver ama zorlamadan",
-                "Çocukların birbirlerini dinlemesini teşvik et",
-                "Olumlu pekiştireçler kullan: 'Çok güzel gözlem yapmışsın!'",
-                "Çocukların duygularını ifade etmesine yardımcı ol"
-              ],
-              "kapaniş": "Hep birlikte bugünkü öğrenmelerimizi kutlayalım! (Alkış, şarkı, hareket)",
               "temizlik": "Materyalleri toplama oyunu - 'Kim en hızlı toplayacak? Renklere göre ayıralım!'"
             }},
             "sonuc": {{
@@ -239,12 +253,11 @@ class VertexAIService:
             }}
           }},
           "uyarlama": {{
-            "Görme Yetersizliği": "Yüksek kontrastlı materyaller, kabartmalı/dokulu yüzeyler, sesli betimlemeler, akran rehberliği, materyallerin sabit yerlerinin olması",
-            "İşitme Yetersizliği": "Görsel ipuçları ve işaret kartları, yüz yüze iletişim, ışıklı uyarıcılar, görsel programlar, dudak okumaya uygun pozisyon",
-            "Fiziksel Motor Sınırlılık": "Adaptif materyaller (kalın saplı fırçalar, kaymaz altlıklar), erişilebilir masalar, aktivitelerin oturarak yapılabilir versiyonları",
-            "Dikkat Eksikliği ve Hiperaktivite": "Kısa ve net yönergeler, görsel hatırlatıcılar, hareket molaları, fidget oyuncakları, sorumluluk verme, başarı tablosu",
-            "Otizm Spektrum Bozukluğu": "Görsel program, rutinler, sessiz köşe, geçiş uyarıları, duyusal hassasiyetlere dikkat, yapılandırılmış ortam",
-            "Dil ve Konuşma Güçlüğü": "Alternatif iletişim yöntemleri, görsel kartlar, sabırlı bekleme, kelime tekrarları, akran modeli"
+            "Görme Yetersizliği": "Dokunsal materyaller kullanma, ses ve koku ipuçları ekleme, açık ve net betimlemeler yapma, güvenli hareket alanı oluşturma, akran desteği sağlama",
+            "İşitme Yetersizliği": "Görsel ipuçları ve işaret dili kullanma, yüz yüze iletişim kurma, ışıklı/titreşimli uyarılar ekleme, dudak okuma için uygun pozisyon alma",
+            "Fiziksel/Motor Sınırlılık": "Erişilebilir materyaller sağlama, adaptif araçlar kullanma, pozisyonlama desteği verme, aktiviteleri çocuğun yapabilecekleri doğrultusunda uyarlama",
+            "Dikkat Eksikliği / Hiperaktivite": "Kısa ve net yönergeler verme, göz teması kurma, etkinliği küçük adımlara bölme, sık sık olumlu pekiştireç verme, hareket fırsatları sunma",
+            "Dil ve Konuşma Güçlüğü": "Basit ve kısa cümleler kullanma, beden dili ve jestlerle destekleme, görsel kartlar kullanma, sabırlı bekleme, cesaretlendirme"
           }},
           "farklilastirma_ve_kapsayicilik": {{
             "Öğrenme Hızı Farkı": {{
@@ -261,30 +274,26 @@ class VertexAIService:
             "Çoklu Duyusal Yaklaşım": "Görsel (resimler, videolar), İşitsel (müzik, sesler), Dokunsal (dokular, hamur), Kinestetik (hareket, dans), Tat ve koku deneyimleri"
           }},
           "degerlendirme": {{
-            "gozlem_formu": [
-              "Çocukların ilgi ve motivasyon düzeyi (1-5 ölçek)",
-              "Kazanımlara ulaşma durumu (başlangıç/gelişiyor/yeterli)",
-              "Sosyal etkileşim kalitesi (işbirliği, paylaşım, iletişim)",
-              "Problem çözme ve yaratıcılık göstergeleri",
-              "Bireysel farklılıkların gözlenmesi ve notlar"
+            "program_tarafindan": [
+              "Etkinliği uygularken hangi aşamalar kolaylaştırıcı oldu?",
+              "Çocukların ilgisi en çok hangi bölümde yoğunlaştı?",
+              "Etkinlik süresi yeterli oldu mu? Hangi bölümler planlanandan farklı sürdü?",
+              "Kullanılan materyaller amaca uygun muydu?",
+              "Etkinlik planlandığı gibi uygulanabildi mi?"
             ],
-            "ogretmen_oz_degerlendirme": [
-              "Planlama ve hazırlık yeterliliği",
-              "Zaman yönetimi ve geçişlerin akıcılığı",
-              "Soru sorma ve geri bildirim kalitesi",
-              "Beklenmeyen durumlara uyum sağlama",
-              "Çocukların bireysel ihtiyaçlarına yanıt verme"
+            "amaclanan_beceriler_tarafindan": [
+              "Çocuklar hedeflenen kavramları anlayabildi mi?",
+              "Problem çözme becerileri gelişim gösterdi mi?",
+              "İşbirliği ve paylaşma davranışları gözlemlendi mi?",
+              "Yaratıcı düşünme ve kendini ifade etme becerileri gelişti mi?",
+              "Motor beceri gelişimi için yeterli fırsat sunuldu mu?"
             ],
-            "cocuk_degerlendirmesi": [
-              "Emoji değerlendirme (mutlu/nötr/üzgün)",
-              "En sevdikleri bölümü çizme/anlatma",
-              "Arkadaş değerlendirmesi (birbirlerini gözlemleme)",
-              "Öğrenme günlüğü/portfolyo için ürün seçimi"
-            ],
-            "aile_geri_bildirimi": [
-              "Evde etkinlikle ilgili paylaşımlar",
-              "Çocuğun eve yansıyan öğrenmeleri",
-              "Aile katılımı önerileri"
+            "ogrenciler_tarafindan": [
+              "Etkinlikte daha fazla desteğe ihtiyaç duyan çocuklar oldu mu?",
+              "Öğrenme gerçekleşti mi yoksa tekrara ihtiyaç var mı?",
+              "Çocuklar öğrendiklerini günlük yaşamla ilişkilendirebildi mi?",
+              "Her çocuk kendi hızında ilerleyebildi mi?",
+              "Farklı öğrenme stillerine sahip çocukların ihtiyaçları karşılandı mı?"
             ]
           }}
         }}
@@ -790,19 +799,39 @@ class VertexAIService:
 
         return activity
 
-    async def generate_content(self, prompt: str) -> str:
-        """Generate content using Vertex AI for daily plans"""
+    async def generate_content(self, prompt: str, use_json_output: bool = True) -> str:
+        """Generate content using Vertex AI for daily plans
+
+        Args:
+            prompt: The prompt to send to Vertex AI
+            use_json_output: If True, use structured JSON output (default: True)
+        """
         try:
             logger.info(f"=== VERTEX AI: Generating content with prompt length: {len(prompt)} ===")
+            logger.info(f"=== Using JSON output mode: {use_json_output} ===")
+
+            # Get the appropriate model (with or without JSON output)
+            model = self._get_model(use_json_output=use_json_output)
 
             # Generate content using Vertex AI
-            response = self.model.generate_content(prompt)
+            response = model.generate_content(prompt)
 
             if not response or not response.text:
                 logger.error("Empty response from Vertex AI")
                 return "{}"
 
             logger.info(f"=== VERTEX AI: Response received, length: {len(response.text)} ===")
+
+            # If using JSON output, validate it's proper JSON
+            if use_json_output:
+                try:
+                    # Try to parse to validate it's valid JSON
+                    json.loads(response.text)
+                    logger.info("=== Response is valid JSON ===")
+                except json.JSONDecodeError as e:
+                    logger.error(f"Response is not valid JSON: {str(e)}")
+                    logger.error(f"First 500 chars of response: {response.text[:500]}")
+
             return response.text
 
         except Exception as e:
