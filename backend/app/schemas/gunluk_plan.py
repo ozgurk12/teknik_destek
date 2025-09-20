@@ -2,6 +2,7 @@
 from pydantic import BaseModel, Field
 from typing import Optional, List, Dict, Any
 from datetime import date, datetime
+from uuid import UUID
 
 class GunlukPlanBase(BaseModel):
     plan_adi: str = Field(..., description="Plan adı")
@@ -72,7 +73,9 @@ class GunlukPlanInDB(GunlukPlanBase):
     etkinlikler: Optional[str] = None
     created_at: datetime
     updated_at: Optional[datetime] = None
-    created_by: Optional[str] = None
+    created_by_id: Optional[UUID] = None
+    created_by_username: Optional[str] = None
+    created_by_fullname: Optional[str] = None
     ai_generated: bool = False
     ai_prompt: Optional[str] = None
 

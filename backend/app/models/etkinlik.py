@@ -1,4 +1,6 @@
-from sqlalchemy import Column, Integer, String, Text, DateTime, Boolean, ARRAY, Index, JSON
+from sqlalchemy import Column, Integer, String, Text, DateTime, Boolean, ARRAY, Index, JSON, ForeignKey
+from sqlalchemy.dialects.postgresql import UUID
+from sqlalchemy.orm import relationship
 from sqlalchemy.sql import func
 from app.db.base import BaseModel
 
@@ -46,14 +48,22 @@ class Etkinlik(BaseModel):
     degerler = Column(ARRAY(Text))  # ["D5.2. Çevreye karşı duyarlılık"]
     okuryazarlik = Column(ARRAY(Text))  # ["OB4.2.SB1. ..."]
 
+    # Kullanıcı Özelleştirmeleri
+    custom_instructions = Column(Text)  # Kullanıcının özel talimatları
+
     # Metadata
     created_at = Column(DateTime(timezone=True), server_default=func.now())
     updated_at = Column(DateTime(timezone=True), onupdate=func.now())
-    created_by = Column(String(100))
+    created_by_id = Column(UUID(as_uuid=True), ForeignKey('users.id', ondelete='SET NULL'))
+    created_by_username = Column(String(100))  # Kullanıcı adını cache'le
+    created_by_fullname = Column(String(200))  # Tam ismini cache'le
     ai_generated = Column(Boolean, default=True)
     prompt_used = Column(Text)
     model_version = Column(String(50), default='gemini-1.5-flash')
     json_data = Column(Text)  # Store original JSON structure
+
+    # Relationships (User import will be needed for this to work)
+    # created_by_user = relationship("User", foreign_keys=[created_by_id])
     
     # Indexes
     __table_args__ = (

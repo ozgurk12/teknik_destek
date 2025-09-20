@@ -1,6 +1,7 @@
 from pydantic import BaseModel, Field
 from typing import Optional, List, Any
 from datetime import datetime
+from uuid import UUID
 
 class EtkinlikBase(BaseModel):
     etkinlik_adi: str = Field(..., description="Activity name")
@@ -24,7 +25,7 @@ class EtkinlikBase(BaseModel):
 class EtkinlikCreate(EtkinlikBase):
     kazanim_idleri: Optional[List[int]] = Field(None, description="Related learning outcome IDs")
     kazanim_metinleri: Optional[List[str]] = Field(None, description="Related learning outcome texts")
-    created_by: Optional[str] = Field(None, description="Creator name/ID")
+    custom_instructions: Optional[str] = Field(None, description="User's custom instructions")
     ai_generated: bool = Field(True, description="Whether AI generated")
     prompt_used: Optional[str] = Field(None, description="Prompt used for generation")
     model_version: Optional[str] = Field(None, description="AI model version")
@@ -52,9 +53,12 @@ class EtkinlikResponse(EtkinlikBase):
     id: int
     kazanim_idleri: Optional[List[int]] = None
     kazanim_metinleri: Optional[List[str]] = None
+    custom_instructions: Optional[str] = None
     created_at: datetime
     updated_at: Optional[datetime] = None
-    created_by: Optional[str] = None
+    created_by_id: Optional[UUID] = None
+    created_by_username: Optional[str] = None
+    created_by_fullname: Optional[str] = None
     ai_generated: bool
     prompt_used: Optional[str] = None
     model_version: Optional[str] = None

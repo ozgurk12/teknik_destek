@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
-from sqlalchemy import Column, Integer, String, Text, DateTime, Boolean, JSON, Date, ARRAY
+from sqlalchemy import Column, Integer, String, Text, DateTime, Boolean, JSON, Date, ARRAY, ForeignKey
+from sqlalchemy.dialects.postgresql import UUID
+from sqlalchemy.orm import relationship
 from sqlalchemy.sql import func
 from app.db.base_class import Base
 
@@ -65,11 +67,16 @@ class GunlukPlan(Base):
     # Metadata
     created_at = Column(DateTime(timezone=True), server_default=func.now())
     updated_at = Column(DateTime(timezone=True), onupdate=func.now())
-    created_by = Column(String(255))
+    created_by_id = Column(UUID(as_uuid=True), ForeignKey('users.id', ondelete='SET NULL'))
+    created_by_username = Column(String(100))  # Kullanıcı adını cache'le
+    created_by_fullname = Column(String(200))  # Tam ismini cache'le
 
     # AI desteği ile oluşturuldu mu?
     ai_generated = Column(Boolean, default=False)
     ai_prompt = Column(Text)
+
+    # Relationships (User import will be needed for this to work)
+    # created_by_user = relationship("User", foreign_keys=[created_by_id])
 
     def __repr__(self):
         return f"<GunlukPlan(id={self.id}, plan_adi='{self.plan_adi}', tarih={self.tarih})>"

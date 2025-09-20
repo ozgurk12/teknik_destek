@@ -7,6 +7,8 @@ import logging
 import json
 
 from app.db.session import get_db
+from app.api.deps import get_current_active_user, require_module_access
+from app.models.user import User
 from app.models.etkinlik import Etkinlik
 from app.models.kazanim import Kazanim
 from app.schemas.etkinlik import (
@@ -28,7 +30,8 @@ logger = logging.getLogger(__name__)
 async def generate_activity(
     request: EtkinlikGenerateRequest,
     background_tasks: BackgroundTasks,
-    db: AsyncSession = Depends(get_db)
+    db: AsyncSession = Depends(get_db),
+    current_user: User = Depends(require_module_access("etkinlik_olusturma"))
 ):
     """
     Generate a new activity using Vertex AI based on selected learning outcomes
@@ -120,6 +123,12 @@ async def generate_activity(
             for k in kazanimlar
         ]
         new_activity.prompt_used = request.custom_prompt
+        new_activity.custom_instructions = request.custom_prompt  # Save custom instructions
+
+        # Add user information
+        new_activity.created_by_id = current_user.id
+        new_activity.created_by_username = current_user.username
+        new_activity.created_by_fullname = current_user.full_name
 
         # Log received curriculum data
         logger.info(f"Received curriculum data from frontend:")

@@ -8,7 +8,8 @@ from sqlalchemy.orm import selectinload
 from datetime import date
 import logging
 
-from app.api.deps import get_db
+from app.api.deps import get_db, get_current_active_user, require_module_access
+from app.models.user import User
 from app.models.gunluk_plan import GunlukPlan
 from app.models.etkinlik import Etkinlik
 from app.schemas.gunluk_plan import (
@@ -140,7 +141,8 @@ async def get_gunluk_plan(
 @router.post("/generate-with-ai", response_model=GunlukPlanResponse)
 async def generate_gunluk_plan_with_ai(
     plan: GunlukPlanCreate,
-    db: AsyncSession = Depends(get_db)
+    db: AsyncSession = Depends(get_db),
+    current_user: User = Depends(require_module_access("gunluk_plan"))
 ):
     """
     Generate a daily plan using AI based on selected activities
@@ -235,6 +237,10 @@ async def generate_gunluk_plan_with_ai(
         aile_katilimi=aile_toplum.get('aile_katilimi', plan.aile_katilimi or ''),
         toplum_katilimi=aile_toplum.get('toplum_katilimi', plan.toplum_katilimi or ''),
         notlar=ai_content.get('notlar', plan.notlar or ''),
+        # User information
+        created_by_id=current_user.id,
+        created_by_username=current_user.username,
+        created_by_fullname=current_user.full_name,
         ai_generated=True,
         ai_prompt=f"Generated daily plan for {plan.yas_grubu} with {len(plan.etkinlik_idleri)} activities"
     )
@@ -292,7 +298,11 @@ async def create_gunluk_plan(
         degerler=plan_data.get('degerler', {}),
         okuryazarlik_becerileri=plan_data.get('okuryazarlik_becerileri', {}),
         ogrenme_ciktilari=plan_data.get('ogrenme_ciktilari', {}),
-        etkinlikler=plan_data.get('etkinlikler', '')
+        etkinlikler=plan_data.get('etkinlikler', ''),
+        # User information
+        created_by_id=current_user.id,
+        created_by_username=current_user.username,
+        created_by_fullname=current_user.full_name
     )
 
     # If materials not provided, use from activities
