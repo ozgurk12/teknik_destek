@@ -175,9 +175,12 @@ const Layout: React.FC = () => {
               </Box>
             </MuiMenuItem>
             <MuiMenuItem
-              onClick={() => {
+              onClick={(e) => {
+                e.preventDefault();
                 handleMenuClose();
-                navigate('/settings');
+                setTimeout(() => {
+                  navigate('/settings');
+                }, 0);
               }}
             >
               <ListItemIcon>
@@ -233,7 +236,10 @@ const Layout: React.FC = () => {
           {menuItems.map((item) => (
             <ListItem key={item.text} disablePadding sx={{ mb: 0.5 }}>
               <ListItemButton
-                onClick={() => navigate(item.path)}
+                onClick={(e) => {
+                  e.preventDefault();
+                  navigate(item.path);
+                }}
                 selected={location.pathname === item.path}
                 sx={{
                   borderRadius: 2,
