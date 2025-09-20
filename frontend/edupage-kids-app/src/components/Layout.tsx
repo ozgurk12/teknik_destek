@@ -82,6 +82,7 @@ const Layout: React.FC = () => {
     { text: 'Kazanımlar', icon: <SchoolIcon />, path: '/kazanimlar', module: 'kazanim_yonetimi' },
     { text: 'İstatistikler', icon: <BarChartIcon />, path: '/statistics', module: 'raporlama' },
     { text: 'Kullanıcı Yönetimi', icon: <SupervisorAccountIcon />, path: '/users', roles: ['admin', 'yonetici'] },
+    { text: 'Ayarlar', icon: <SettingsIcon />, path: '/settings' },
   ].filter(item => {
     if (item.module && !hasModule(item.module)) return false;
     if (item.roles && !hasRole(item.roles)) return false;
