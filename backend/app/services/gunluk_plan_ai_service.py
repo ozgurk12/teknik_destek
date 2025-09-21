@@ -167,18 +167,30 @@ class GunlukPlanAIService:
 
                         # Process Öğrenme Çıktıları with proper codes
                         if kazanim.ogrenme_ciktilari:
-                            alan_key = self._get_alan_code(kazanim.ders)
-                            if kazanim.surec_bilesenleri:
-                                # Format: MAB.2.a
-                                code = f"{alan_key}.{kazanim.surec_bilesenleri}"
-                                formatted_output = f"{code}. {kazanim.ogrenme_ciktilari}"
-                            else:
-                                formatted_output = kazanim.ogrenme_ciktilari
-
+                            # Add the main learning outcome
                             if kazanim.ders not in aggregated_ogrenme_ciktilari:
                                 aggregated_ogrenme_ciktilari[kazanim.ders] = []
-                            if formatted_output not in aggregated_ogrenme_ciktilari[kazanim.ders]:
-                                aggregated_ogrenme_ciktilari[kazanim.ders].append(formatted_output)
+                            if kazanim.ogrenme_ciktilari not in aggregated_ogrenme_ciktilari[kazanim.ders]:
+                                aggregated_ogrenme_ciktilari[kazanim.ders].append(kazanim.ogrenme_ciktilari)
+
+                            # Add sub-learning outcomes if available
+                            if kazanim.alt_ogrenme_ciktilari:
+                                if kazanim.surec_bilesenleri:
+                                    surec_code = kazanim.surec_bilesenleri
+                                    alan_key = self._get_alan_code(kazanim.ders)
+                                    # Check if it already starts with area code (like TAB1.1.SB2)
+                                    if surec_code.startswith(alan_key):
+                                        # Remove the duplicate area code prefix
+                                        surec_code = surec_code[len(alan_key):]
+                                        if surec_code.startswith('.'):
+                                            surec_code = surec_code[1:]
+
+                                    formatted_alt = f"{surec_code}. {kazanim.alt_ogrenme_ciktilari}"
+                                else:
+                                    formatted_alt = kazanim.alt_ogrenme_ciktilari
+
+                                if formatted_alt not in aggregated_ogrenme_ciktilari[kazanim.ders]:
+                                    aggregated_ogrenme_ciktilari[kazanim.ders].append(formatted_alt)
 
                         # Process Bütünleşik Beceriler
                         if kazanim.butunlesik_beceriler:

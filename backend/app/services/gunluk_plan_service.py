@@ -86,20 +86,34 @@ class GunlukPlanService:
 
                         # Process Öğrenme Çıktıları with codes
                         if kazanim.ogrenme_ciktilari:
-                            alan_key = self._get_alan_code(kazanim.ders)
-                            if kazanim.surec_bilesenleri:
-                                # Format: MAB.2.a
-                                code = f"{alan_key}.{kazanim.surec_bilesenleri}"
+                            # Add the main learning outcome
+                            self._add_to_dict(
+                                ogrenme_ciktilari,
+                                kazanim.ders,
+                                kazanim.ogrenme_ciktilari
+                            )
+
+                            # Add sub-learning outcomes if available
+                            if kazanim.alt_ogrenme_ciktilari:
+                                # Process süreç bileşenleri - remove duplicate prefix if exists
+                                if kazanim.surec_bilesenleri:
+                                    surec_code = kazanim.surec_bilesenleri
+                                    # Check if it already starts with area code (like TAB1.1.SB2)
+                                    alan_key = self._get_alan_code(kazanim.ders)
+                                    if surec_code.startswith(alan_key):
+                                        # Remove the duplicate area code prefix
+                                        surec_code = surec_code[len(alan_key):]
+                                        if surec_code.startswith('.'):
+                                            surec_code = surec_code[1:]
+
+                                    formatted_alt = f"{surec_code}. {kazanim.alt_ogrenme_ciktilari}"
+                                else:
+                                    formatted_alt = kazanim.alt_ogrenme_ciktilari
+
                                 self._add_to_dict(
                                     ogrenme_ciktilari,
                                     kazanim.ders,
-                                    f"{code}. {kazanim.ogrenme_ciktilari}"
-                                )
-                            else:
-                                self._add_to_dict(
-                                    ogrenme_ciktilari,
-                                    kazanim.ders,
-                                    kazanim.ogrenme_ciktilari
+                                    formatted_alt
                                 )
 
                         # Process Bütünleşik Beceriler (Kavramsal, Eğilimler, etc.)

@@ -22,6 +22,9 @@ import {
   Slider,
   Snackbar,
   Stack,
+  IconButton,
+  Collapse,
+  Divider,
 } from '@mui/material';
 import { useQuery, useMutation } from '@tanstack/react-query';
 import { useNavigate } from 'react-router-dom';
@@ -29,6 +32,8 @@ import SearchIcon from '@mui/icons-material/Search';
 import FilterListIcon from '@mui/icons-material/FilterList';
 import AutoAwesomeIcon from '@mui/icons-material/AutoAwesome';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import InfoIcon from '@mui/icons-material/Info';
 import { kazanimApi, activityApi } from '../services/api';
 import CurriculumSelector, { CurriculumSelections } from '../components/CurriculumSelector';
 
@@ -37,6 +42,7 @@ interface Kazanim {
   yas_grubu: string;
   ders: string;
   alan_becerileri: string;
+  butunlesik_beceriler: string | null;
   butunlesik_bilesenler: string | null;
   surec_bilesenleri: string | null;
   ogrenme_ciktilari: string;
@@ -56,6 +62,7 @@ export default function ActivityGenerator() {
   const [selectedKazanimIds, setSelectedKazanimIds] = useState<number[]>([]);
   const [customPrompt, setCustomPrompt] = useState('');
   const [activityDuration, setActivityDuration] = useState(30);
+  const [expandedKazanimId, setExpandedKazanimId] = useState<number | null>(null);
   const [generatedActivity, setGeneratedActivity] = useState<any>(null);
 
   // Curriculum selections state
@@ -308,6 +315,11 @@ export default function ActivityGenerator() {
     );
   };
 
+  const handleKazanimExpand = (id: number, event: React.MouseEvent) => {
+    event.stopPropagation();
+    setExpandedKazanimId(expandedKazanimId === id ? null : id);
+  };
+
   const handleSaveActivity = () => {
     if (generatedActivity) {
       navigate(`/activities/${generatedActivity.id}`);
@@ -405,9 +417,20 @@ export default function ActivityGenerator() {
                       sx={{ mr: 2 }}
                     />
                     <Box flex={1}>
-                      <Box display="flex" gap={1} mb={1}>
+                      <Box display="flex" gap={1} mb={1} alignItems="center">
                         <Chip size="small" label={kazanim.yas_grubu} color="primary" />
                         <Chip size="small" label={kazanim.ders} variant="outlined" />
+                        <Box flexGrow={1} />
+                        <IconButton
+                          size="small"
+                          onClick={(e) => handleKazanimExpand(kazanim.id, e)}
+                          sx={{
+                            transform: expandedKazanimId === kazanim.id ? 'rotate(180deg)' : 'rotate(0deg)',
+                            transition: 'transform 0.3s',
+                          }}
+                        >
+                          <ExpandMoreIcon />
+                        </IconButton>
                       </Box>
                       <Typography variant="body1" fontWeight="medium" gutterBottom>
                         {kazanim.ogrenme_ciktilari}
@@ -417,6 +440,67 @@ export default function ActivityGenerator() {
                           {kazanim.alt_ogrenme_ciktilari}
                         </Typography>
                       )}
+
+                      {/* Expanded Details */}
+                      <Collapse in={expandedKazanimId === kazanim.id}>
+                        <Divider sx={{ my: 2 }} />
+                        <Box sx={{ mt: 2 }}>
+                          <Stack spacing={2}>
+                            {kazanim.alan_becerileri && (
+                              <Box>
+                                <Typography variant="subtitle2" fontWeight="bold" color="primary">
+                                  Alan Becerileri:
+                                </Typography>
+                                <Typography variant="body2">
+                                  {kazanim.alan_becerileri}
+                                </Typography>
+                              </Box>
+                            )}
+
+                            {kazanim.surec_bilesenleri && (
+                              <Box>
+                                <Typography variant="subtitle2" fontWeight="bold" color="primary">
+                                  Süreç Bileşenleri:
+                                </Typography>
+                                <Typography variant="body2">
+                                  {kazanim.surec_bilesenleri}
+                                </Typography>
+                              </Box>
+                            )}
+
+                            {kazanim.butunlesik_beceriler && (
+                              <Box>
+                                <Typography variant="subtitle2" fontWeight="bold" color="primary">
+                                  Bütünleşik Beceriler:
+                                </Typography>
+                                <Typography variant="body2">
+                                  {kazanim.butunlesik_beceriler}
+                                </Typography>
+                              </Box>
+                            )}
+
+                            <Box sx={{ bgcolor: 'grey.50', p: 1.5, borderRadius: 1 }}>
+                              <Box display="flex" alignItems="center" gap={1} mb={1}>
+                                <InfoIcon fontSize="small" color="action" />
+                                <Typography variant="caption" fontWeight="medium">
+                                  Kazanım Detayları
+                                </Typography>
+                              </Box>
+                              <Stack spacing={0.5}>
+                                <Typography variant="caption">
+                                  <strong>Yaş Grubu:</strong> {kazanim.yas_grubu}
+                                </Typography>
+                                <Typography variant="caption">
+                                  <strong>Ders:</strong> {kazanim.ders}
+                                </Typography>
+                                <Typography variant="caption">
+                                  <strong>Kazanım ID:</strong> #{kazanim.id}
+                                </Typography>
+                              </Stack>
+                            </Box>
+                          </Stack>
+                        </Box>
+                      </Collapse>
                     </Box>
                   </Box>
                 </CardContent>

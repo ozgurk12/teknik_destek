@@ -36,7 +36,8 @@ async def list_gunluk_planlar(
     tarih_from: Optional[date] = Query(None, description="Filter by date from"),
     tarih_to: Optional[date] = Query(None, description="Filter by date to"),
     search: Optional[str] = Query(None, description="Search in plan name"),
-    db: AsyncSession = Depends(get_db)
+    db: AsyncSession = Depends(get_db),
+    current_user: User = Depends(get_current_active_user)
 ):
     """
     List all daily plans with pagination and filtering
@@ -100,7 +101,8 @@ async def list_gunluk_planlar(
 @router.get("/{plan_id}", response_model=GunlukPlanResponse)
 async def get_gunluk_plan(
     plan_id: int,
-    db: AsyncSession = Depends(get_db)
+    db: AsyncSession = Depends(get_db),
+    current_user: User = Depends(get_current_active_user)
 ):
     """
     Get a specific daily plan by ID
@@ -142,7 +144,7 @@ async def get_gunluk_plan(
 async def generate_gunluk_plan_with_ai(
     plan: GunlukPlanCreate,
     db: AsyncSession = Depends(get_db),
-    current_user: User = Depends(require_module_access("gunluk_plan"))
+    current_user: User = Depends(get_current_active_user)
 ):
     """
     Generate a daily plan using AI based on selected activities
@@ -230,7 +232,7 @@ async def generate_gunluk_plan_with_ai(
         beslenme_toplanma=ogrenme_ogretme.get('beslenme_toplanma_temizlik', plan.beslenme_toplanma or ''),
         etkinlikler=json.dumps(ogrenme_ogretme.get('etkinlikler', ''), ensure_ascii=False) if isinstance(ogrenme_ogretme.get('etkinlikler'), dict) else ogrenme_ogretme.get('etkinlikler', plan_data.get('etkinlikler', '')),
         # Evaluation and differentiation
-        degerlendirme=ai_content.get('degerlendirme', plan.degerlendirme or ''),
+        degerlendirme='\n'.join(ai_content.get('degerlendirme', [])) if isinstance(ai_content.get('degerlendirme'), list) else ai_content.get('degerlendirme', plan.degerlendirme or ''),
         zenginlestirme=farklilastirma.get('zenginlestirme', plan.zenginlestirme or ''),
         destekleme=farklilastirma.get('destekleme', plan.destekleme or ''),
         # Family and community participation
@@ -274,7 +276,8 @@ async def generate_gunluk_plan_with_ai(
 @router.post("/", response_model=GunlukPlanResponse)
 async def create_gunluk_plan(
     plan: GunlukPlanCreate,
-    db: AsyncSession = Depends(get_db)
+    db: AsyncSession = Depends(get_db),
+    current_user: User = Depends(get_current_active_user)
 ):
     """
     Create a new daily plan
@@ -339,7 +342,8 @@ async def create_gunluk_plan(
 async def update_gunluk_plan(
     plan_id: int,
     plan_update: GunlukPlanUpdate,
-    db: AsyncSession = Depends(get_db)
+    db: AsyncSession = Depends(get_db),
+    current_user: User = Depends(get_current_active_user)
 ):
     """
     Update an existing daily plan
@@ -406,7 +410,8 @@ async def update_gunluk_plan(
 @router.delete("/{plan_id}")
 async def delete_gunluk_plan(
     plan_id: int,
-    db: AsyncSession = Depends(get_db)
+    db: AsyncSession = Depends(get_db),
+    current_user: User = Depends(get_current_active_user)
 ):
     """
     Delete a daily plan
@@ -426,7 +431,8 @@ async def delete_gunluk_plan(
 @router.get("/{plan_id}/export/docx")
 async def export_gunluk_plan_to_docx(
     plan_id: int,
-    db: AsyncSession = Depends(get_db)
+    db: AsyncSession = Depends(get_db),
+    current_user: User = Depends(get_current_active_user)
 ):
     """
     Export a daily plan to DOCX format

@@ -95,7 +95,7 @@ axios.interceptors.response.use(
       }
 
       try {
-        const response = await axios.post('/auth/refresh', {
+        const response = await axios.post(`${API_BASE_URL}/auth/refresh`, {
           refresh_token: refreshToken
         });
 
@@ -146,7 +146,7 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
 
   const fetchUser = async () => {
     try {
-      const response = await axios.get('/users/me');
+      const response = await axios.get(`${API_BASE_URL}/users/me`);
       setUser(response.data);
       setError(null);
     } catch (error) {
@@ -165,7 +165,7 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
       formData.append('username', username);
       formData.append('password', password);
 
-      const response = await axios.post('/auth/login', formData, {
+      const response = await axios.post(`${API_BASE_URL}/auth/login`, formData, {
         headers: {
           'Content-Type': 'application/x-www-form-urlencoded',
         },

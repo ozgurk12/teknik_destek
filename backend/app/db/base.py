@@ -16,6 +16,6 @@ Base = declarative_base(metadata=metadata)
 
 class BaseModel(Base):
     __abstract__ = True
-    
+
     def to_dict(self):
         return {c.name: getattr(self, c.name) for c in self.__table__.columns}

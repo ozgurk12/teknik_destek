@@ -1,7 +1,7 @@
 // API Configuration
 const API_CONFIGS = {
   production: {
-    baseURL: 'https://etkinlik.hautmedia.com/api/v1',
+    baseURL: 'https://api-etkinlik.hautmedia.com/api/v1',
   },
   development: {
     baseURL: 'http://localhost:8000/api/v1',

@@ -54,7 +54,7 @@ class Etkinlik(BaseModel):
     # Metadata
     created_at = Column(DateTime(timezone=True), server_default=func.now())
     updated_at = Column(DateTime(timezone=True), onupdate=func.now())
-    created_by_id = Column(UUID(as_uuid=True), ForeignKey('users.id', ondelete='SET NULL'))
+    created_by_id = Column(UUID(as_uuid=True))
     created_by_username = Column(String(100))  # Kullanıcı adını cache'le
     created_by_fullname = Column(String(200))  # Tam ismini cache'le
     ai_generated = Column(Boolean, default=True)
@@ -62,7 +62,7 @@ class Etkinlik(BaseModel):
     model_version = Column(String(50), default='gemini-1.5-flash')
     json_data = Column(Text)  # Store original JSON structure
 
-    # Relationships (User import will be needed for this to work)
+    # Relationships
     # created_by_user = relationship("User", foreign_keys=[created_by_id])
     
     # Indexes

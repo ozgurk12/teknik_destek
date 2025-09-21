@@ -236,8 +236,7 @@ const Layout: React.FC = () => {
           {menuItems.map((item) => (
             <ListItem key={item.text} disablePadding sx={{ mb: 0.5 }}>
               <ListItemButton
-                onClick={(e) => {
-                  e.preventDefault();
+                onClick={() => {
                   navigate(item.path);
                 }}
                 selected={location.pathname === item.path}

@@ -53,18 +53,29 @@ class EtkinlikService:
 
                 # Process Öğrenme Çıktıları with codes
                 if kazanim.ogrenme_ciktilari:
+                    # Add the main learning outcome
+                    if kazanim.ders not in ogrenme_ciktilari:
+                        ogrenme_ciktilari[kazanim.ders] = []
+                    if kazanim.ogrenme_ciktilari not in ogrenme_ciktilari[kazanim.ders]:
+                        ogrenme_ciktilari[kazanim.ders].append(kazanim.ogrenme_ciktilari)
+
+                # Add sub-learning outcomes if available
+                if kazanim.alt_ogrenme_ciktilari and kazanim.surec_bilesenleri:
+                    surec_code = kazanim.surec_bilesenleri
                     alan_key = self._get_alan_code(kazanim.ders)
-                    if kazanim.surec_bilesenleri:
-                        # Format: MAB.2.a
-                        code = f"{alan_key}.{kazanim.surec_bilesenleri}"
-                        formatted_output = f"{code}. {kazanim.ogrenme_ciktilari}"
-                    else:
-                        formatted_output = kazanim.ogrenme_ciktilari
+                    # Check if it already starts with area code (like TAB1.1.SB2)
+                    if surec_code.startswith(alan_key):
+                        # Remove the duplicate area code prefix
+                        surec_code = surec_code[len(alan_key):]
+                        if surec_code.startswith('.'):
+                            surec_code = surec_code[1:]
+
+                    formatted_alt = f"{surec_code}. {kazanim.alt_ogrenme_ciktilari}"
 
                     if kazanim.ders not in ogrenme_ciktilari:
                         ogrenme_ciktilari[kazanim.ders] = []
-                    if formatted_output not in ogrenme_ciktilari[kazanim.ders]:
-                        ogrenme_ciktilari[kazanim.ders].append(formatted_output)
+                    if formatted_alt not in ogrenme_ciktilari[kazanim.ders]:
+                        ogrenme_ciktilari[kazanim.ders].append(formatted_alt)
 
                 # Process bütünleşik beceriler field to extract area codes
                 if kazanim.butunlesik_beceriler:
