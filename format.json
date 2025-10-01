@@ -1,0 +1,117 @@
+
+{
+    "etkinlik_adi": "",
+    "alan_adi": "",
+    "yas_grubu": "",
+    "sure": "",
+    "uygulama_yeri": "",
+    "amaclar": [
+      "",
+      "",
+      "",
+      ""
+    ],
+    "materyaller": {
+      "temel_malzemeler": "",
+      "kategori_1": {
+        "ana": [],
+        "alternatif": []
+      },
+      "kategori_2": {
+        "ana": [],
+        "alternatif": []
+      },
+      "kategori_3": {
+        "ana": [],
+        "alternatif": []
+      },
+      "kategori_4": {
+        "ana": [],
+        "alternatif": []
+      },
+      "kategori_5": {
+        "ana": [],
+        "alternatif": []
+      }
+    },
+    "uygulama_sureci": {
+      "giris": {
+        "sure": "",
+        "adimlar": [
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      "gelisme": {
+        "sure": "",
+        "aktiviteler": {
+          "aktivite_1": "",
+          "aktivite_2": "",
+          "aktivite_3": "",
+          "aktivite_4": "",
+          "aktivite_5": ""
+        }
+      },
+      "yansima_cemberi": {
+        "sure": "",
+        "duzenleme": "",
+        "sorular": [
+          "",
+          "",
+          "",
+          ""
+        ],
+        "ogretmen_ozet_ornekleri": [
+          "",
+          ""
+        ],
+        "kapaniş_sorusu": "",
+        "final": ""
+      },
+      "sonuc": {
+        "sure": "",
+        "aktiviteler": [
+          "",
+          ""
+        ]
+      }
+    },
+    "uyarlama": {
+      "gorme_yetersizligi": "",
+      "isitme_yetersizligi": "",
+      "fiziksel_motor_sinirlilik": "",
+      "dikkat_eksikligi_hiperaktivite": "",
+      "dil_ve_konusma_guclugu": ""
+    },
+    "farklilastirma_ve_kapsayicilik": {
+      "ogrenme_hizi_farki": {
+        "ileri_duzey": "",
+        "ek_destek": ""
+      },
+      "dil_destegi": "",
+      "kulturel_kapsayicilik": "",
+      "sosyal_duygusal_farklilastirma": "",
+      "coklu_duyusal_yaklasim": ""
+    },
+    "degerlendirme": {
+      "program_tarafindan": [
+        "",
+        "",
+        ""
+      ],
+      "amaclanan_beceriler_tarafindan": [
+        "",
+        "",
+        ""
+      ],
+      "ogrenciler_tarafindan": [
+        "",
+        "",
+        ""
+      ]
+    }
+  }

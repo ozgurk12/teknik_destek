@@ -1,0 +1,512 @@
+{
+  "paragraphs": [
+    {
+      "index": 0,
+      "text": "Etkinlik Adı: Kutudaki Duyular",
+      "style": "Normal",
+      "alignment": null
+    },
+    {
+      "index": 1,
+      "text": "Alan Adı: Fen ve Ekoloji",
+      "style": "Normal",
+      "alignment": null
+    },
+    {
+      "index": 2,
+      "text": "Yaş Grubu: 36 – 48 ay ",
+      "style": "Normal",
+      "alignment": null
+    },
+    {
+      "index": 3,
+      "text": "Süre: 30 dakika ",
+      "style": "Normal",
+      "alignment": null
+    },
+    {
+      "index": 4,
+      "text": "Uygulama Yeri: Sınıf içi",
+      "style": "Normal",
+      "alignment": null
+    },
+    {
+      "index": 5,
+      "text": "Etkinliğin Amacı:",
+      "style": "Normal",
+      "alignment": null
+    },
+    {
+      "index": 7,
+      "text": "Çocukların duyu organlarının işlevlerini tanıması.",
+      "style": "List Paragraph",
+      "alignment": null
+    },
+    {
+      "index": 8,
+      "text": "Çevresindeki nesneleri duyu organları aracılığıyla ayırt etmesi.",
+      "style": "List Paragraph",
+      "alignment": null
+    },
+    {
+      "index": 9,
+      "text": "Duyu farkındalığı geliştirerek gözlem becerisini artırması.",
+      "style": "List Paragraph",
+      "alignment": null
+    },
+    {
+      "index": 10,
+      "text": "Canlıların çevreyi tanımak için organlara ihtiyaç duyduğunu kavraması.",
+      "style": "List Paragraph",
+      "alignment": null
+    },
+    {
+      "index": 13,
+      "text": "Materyaller",
+      "style": "Normal",
+      "alignment": "CENTER (1)"
+    },
+    {
+      "index": 15,
+      "text": "5 küçük kutu veya kese (dokunma, işitme, tat, koku, görme için).",
+      "style": "List Paragraph",
+      "alignment": null
+    },
+    {
+      "index": 16,
+      "text": "Dokunma kutusu: pamuk, taş, yaprak (alternatif: kumaş parçaları, plastik kaşık).",
+      "style": "List Paragraph",
+      "alignment": null
+    },
+    {
+      "index": 17,
+      "text": "Koku kutusu: limon, kahve, sabun (alternatif: portakal kabuğu, tarçın, kolonya).",
+      "style": "List Paragraph",
+      "alignment": null
+    },
+    {
+      "index": 18,
+      "text": "Tat için: küçük parça kraker ve üzüm (alternatif: tuzlu bisküvi, kuru üzüm).",
+      "style": "List Paragraph",
+      "alignment": null
+    },
+    {
+      "index": 19,
+      "text": "Görme için: renkli şekiller, resimli kartlar (alternatif: kitap resimleri, dergi kesikleri).",
+      "style": "List Paragraph",
+      "alignment": null
+    },
+    {
+      "index": 20,
+      "text": "İşitme için: çıngırak, zil, poşet hışırtısı (alternatif: pet şişeye fasulye/mercimek doldurma).",
+      "style": "List Paragraph",
+      "alignment": null
+    },
+    {
+      "index": 26,
+      "text": "Uygulama Süreci",
+      "style": "Normal",
+      "alignment": null
+    },
+    {
+      "index": 27,
+      "text": "Giriş (5 dk)",
+      "style": "Normal",
+      "alignment": null
+    },
+    {
+      "index": 28,
+      "text": "Öğretmen sınıfa elinde gizemli bir “duyu kutusu” ile gelir. Kutunun üzerine büyük bir soru işareti yapıştırılmıştır.",
+      "style": "List Paragraph",
+      "alignment": null
+    },
+    {
+      "index": 29,
+      "text": "Çocuklara sorar:",
+      "style": "List Paragraph",
+      "alignment": null
+    },
+    {
+      "index": 30,
+      "text": "“Kutunun içinde ne var dersiniz?”",
+      "style": "List Paragraph",
+      "alignment": null
+    },
+    {
+      "index": 31,
+      "text": "“Gözlerimizi kapatsak, başka hangi yollarla anlayabiliriz?”",
+      "style": "List Paragraph",
+      "alignment": null
+    },
+    {
+      "index": 32,
+      "text": "Çocuklar tahminlerini söyler, öğretmen her yanıtı destekler.",
+      "style": "List Paragraph",
+      "alignment": null
+    },
+    {
+      "index": 33,
+      "text": "Ardından kısa bir oyun oynanır:",
+      "style": "List Paragraph",
+      "alignment": null
+    },
+    {
+      "index": 34,
+      "text": "Öğretmen sırayla duyu organlarının adını söylemeden hareketini yapar. (Örn. kulaklarını tutar, burnunu koklama hareketi yapar.) Çocuklara sorar:",
+      "style": "List Paragraph",
+      "alignment": null
+    },
+    {
+      "index": 35,
+      "text": "“Ben hangi organımı kullandım?”",
+      "style": "List Paragraph",
+      "alignment": null
+    },
+    {
+      "index": 36,
+      "text": "Çocuklar doğru cevabı söyledikçe öğretmen onları kutuya yaklaştırarak meraklarını artırır.",
+      "style": "List Paragraph",
+      "alignment": null
+    },
+    {
+      "index": 37,
+      "text": "Son olarak öğretmen: “Bugün duyu organlarımızı keşfetmek için bir yolculuğa çıkacağız. Hazır mısınız?” diyerek çocukları etkinliğe davet eder.",
+      "style": "List Paragraph",
+      "alignment": null
+    },
+    {
+      "index": 38,
+      "text": "Gelişme (20 dk)",
+      "style": "Normal",
+      "alignment": null
+    },
+    {
+      "index": 39,
+      "text": "Öğretmen 5 farklı kutuyu sırayla ortaya koyar.",
+      "style": "List Paragraph",
+      "alignment": null
+    },
+    {
+      "index": 40,
+      "text": "Dokunma kutusu: Çocuklar gözleri kapalıyken nesneyi hisseder ve ne olduğunu tahmin eder.",
+      "style": "List Paragraph",
+      "alignment": null
+    },
+    {
+      "index": 41,
+      "text": "Koku kutusu: Çocuklar kokuyu alıp neye benzediğini söyler.",
+      "style": "List Paragraph",
+      "alignment": null
+    },
+    {
+      "index": 42,
+      "text": "Tat kutusu: Küçük bir yiyecek tadıp hangi tat olduğunu paylaşır.",
+      "style": "List Paragraph",
+      "alignment": null
+    },
+    {
+      "index": 43,
+      "text": "İşitme kutusu: Kutudaki nesne sallanır, çıkan sesi hangi nesneye ait olduğunu tahmin ederler.",
+      "style": "List Paragraph",
+      "alignment": null
+    },
+    {
+      "index": 44,
+      "text": "Görme: Çocuklara kartlar gösterilir, “Bunu hangi organımızla görüyoruz?” sorusu sorulur.",
+      "style": "List Paragraph",
+      "alignment": null
+    },
+    {
+      "index": 46,
+      "text": "Yansıma Çemberi (5 dk)",
+      "style": "Normal",
+      "alignment": null
+    },
+    {
+      "index": 47,
+      "text": "Çocuklar halı üzerine yarım daire veya çember şeklinde oturur. Öğretmen ortaya kutuları dizer.",
+      "style": "List Paragraph",
+      "alignment": null
+    },
+    {
+      "index": 48,
+      "text": "Çocuklara şu yönlendirici sorular sorulur:",
+      "style": "List Paragraph",
+      "alignment": null
+    },
+    {
+      "index": 49,
+      "text": "“En çok hangi kutuda şaşırdınız? Neden?”",
+      "style": "Normal",
+      "alignment": null
+    },
+    {
+      "index": 50,
+      "text": "“Gözlerimiz kapalı olsaydı sadece hangi organlarımız bize yardım ederdi?”",
+      "style": "Normal",
+      "alignment": null
+    },
+    {
+      "index": 51,
+      "text": "“Burnumuz koku almasaydı hayatımızda neler değişirdi?”",
+      "style": "Normal",
+      "alignment": null
+    },
+    {
+      "index": 52,
+      "text": "“Dilimiz olmasaydı yemeklerimizin tadını anlayabilir miydik?”",
+      "style": "Normal",
+      "alignment": null
+    },
+    {
+      "index": 53,
+      "text": "Çocukların paylaşımları dikkatle dinlenir, her çocuk konuşmaya teşvik edilir.",
+      "style": "List Paragraph",
+      "alignment": null
+    },
+    {
+      "index": 54,
+      "text": "Öğretmen çocukların söylediklerini kısa cümlelerle özetler:",
+      "style": "List Paragraph",
+      "alignment": null
+    },
+    {
+      "index": 55,
+      "text": "“Evet, burnumuz olmasaydı çiçeklerin kokusunu alamazdık.”",
+      "style": "Normal",
+      "alignment": null
+    },
+    {
+      "index": 56,
+      "text": "“Doğru, kulaklarımız olmasa müzik dinleyemezdik.”",
+      "style": "Normal",
+      "alignment": null
+    },
+    {
+      "index": 57,
+      "text": "Çemberin sonunda öğretmen sorar:",
+      "style": "List Paragraph",
+      "alignment": null
+    },
+    {
+      "index": 58,
+      "text": "“Bugün öğrendiğiniz en ilginç şey neydi?”",
+      "style": "Normal",
+      "alignment": null
+    },
+    {
+      "index": 59,
+      "text": "Çocuklar sırayla kısa cevap verir. İsteyen çocuk cevap yerine hareketle de (örneğin gözünü göstererek) katılabilir.",
+      "style": "Normal",
+      "alignment": null
+    },
+    {
+      "index": 60,
+      "text": "Son olarak öğretmen çocukların söylediklerini bağlar:",
+      "style": "List Paragraph",
+      "alignment": null
+    },
+    {
+      "index": 61,
+      "text": "“Gördünüz mü, her organımızın kendine özel bir görevi var. Hepsi birlikte çalışarak bize dünyayı tanımamızda yardımcı oluyor.”",
+      "style": "Normal",
+      "alignment": null
+    },
+    {
+      "index": 62,
+      "text": "Sonuç (5 dk)",
+      "style": "Normal",
+      "alignment": null
+    },
+    {
+      "index": 63,
+      "text": "Çocuklarla birlikte “Duyu organlarımız” şarkısı (öğretmenin basit tekrarlamalı sözlerle söylediği) söylenir.",
+      "style": "List Paragraph",
+      "alignment": null
+    },
+    {
+      "index": 64,
+      "text": "Çocuklardan gün içinde aileleriyle duyu organlarını kullanarak fark ettikleri bir şeyi paylaşmaları istenir.",
+      "style": "List Paragraph",
+      "alignment": null
+    },
+    {
+      "index": 71,
+      "text": "UYARLAMA",
+      "style": "Normal",
+      "alignment": null
+    },
+    {
+      "index": 79,
+      "text": "FARKLILAŞTIRMA VE KAPSAYICILIK",
+      "style": "Normal",
+      "alignment": null
+    },
+    {
+      "index": 80,
+      "text": "Öğrenme Hızı Farkı:",
+      "style": "Normal",
+      "alignment": null
+    },
+    {
+      "index": 81,
+      "text": "İleri düzey: Çocuk organlarla ilgili yeni örnekler bulabilir (örneğin “kulakla ne duyabiliriz?”).",
+      "style": "List Paragraph",
+      "alignment": null
+    },
+    {
+      "index": 82,
+      "text": "Ek desteğe ihtiyaç duyan: Çocuk için öğretmen seçenekleri azaltır (örneğin iki nesne arasından seçim yapar).",
+      "style": "List Paragraph",
+      "alignment": null
+    },
+    {
+      "index": 83,
+      "text": "Dil Desteği:",
+      "style": "Normal",
+      "alignment": null
+    },
+    {
+      "index": 84,
+      "text": "İkinci dili öğrenen çocuklar için öğretmen basit kelimeleri görsel kartlarla pekiştirir (eye, ear vb.).",
+      "style": "List Paragraph",
+      "alignment": null
+    },
+    {
+      "index": 85,
+      "text": "Kültürel Kapsayıcılık:",
+      "style": "Normal",
+      "alignment": null
+    },
+    {
+      "index": 86,
+      "text": "Tat ve koku materyalleri farklı kültürlerden seçilebilir (ör. tarçın, vanilya, kimyon).",
+      "style": "List Paragraph",
+      "alignment": null
+    },
+    {
+      "index": 87,
+      "text": "Sosyal-Duygusal Farklılaştırma:",
+      "style": "Normal",
+      "alignment": null
+    },
+    {
+      "index": 88,
+      "text": "Çekingen çocuklar birebir etkinlikte deneyimleyebilir, sınıf önünde paylaşmaya zorlanmaz.",
+      "style": "List Paragraph",
+      "alignment": null
+    },
+    {
+      "index": 89,
+      "text": "Çoklu Duyusal Yaklaşım:",
+      "style": "Normal",
+      "alignment": null
+    },
+    {
+      "index": 90,
+      "text": "Görsel, işitsel, kinestetik ve dokunsal materyaller birlikte kullanılarak farklı öğrenme stillerine hitap edilir.",
+      "style": "List Paragraph",
+      "alignment": null
+    },
+    {
+      "index": 100,
+      "text": "DEĞERLENDİRME",
+      "style": "Normal",
+      "alignment": null
+    },
+    {
+      "index": 101,
+      "text": "Program Tarafından:",
+      "style": "Normal",
+      "alignment": null
+    },
+    {
+      "index": 102,
+      "text": "Etkinliği uygularken hangi aşamalar kolaylaştırıcı oldu?",
+      "style": "List Paragraph",
+      "alignment": null
+    },
+    {
+      "index": 103,
+      "text": "Çocukların ilgisi en çok hangi kutuda toplandı?",
+      "style": "List Paragraph",
+      "alignment": null
+    },
+    {
+      "index": 104,
+      "text": "Etkinlik süresi yeterli oldu mu?",
+      "style": "List Paragraph",
+      "alignment": null
+    },
+    {
+      "index": 105,
+      "text": "Amaçlanan Beceriler Tarafından:",
+      "style": "Normal",
+      "alignment": null
+    },
+    {
+      "index": 106,
+      "text": "Çocuklar duyu organlarının işlevlerini doğru ilişkilendirebildi mi?",
+      "style": "List Paragraph",
+      "alignment": null
+    },
+    {
+      "index": 107,
+      "text": "Nesneleri duyularına göre ayırt edebildiler mi?",
+      "style": "List Paragraph",
+      "alignment": null
+    },
+    {
+      "index": 108,
+      "text": "Çocukların gözlem yapma becerisi gelişti mi?",
+      "style": "List Paragraph",
+      "alignment": null
+    },
+    {
+      "index": 109,
+      "text": "Öğrenciler Tarafından:",
+      "style": "Normal",
+      "alignment": null
+    },
+    {
+      "index": 110,
+      "text": "Etkinlikte daha fazla desteğe ihtiyaç duyan çocuklar oldu mu?",
+      "style": "List Paragraph",
+      "alignment": null
+    },
+    {
+      "index": 111,
+      "text": "Öğrenme gerçekleşti mi yoksa tekrara ihtiyaç var mı?",
+      "style": "List Paragraph",
+      "alignment": null
+    },
+    {
+      "index": 112,
+      "text": "Çocuklar duyu organlarını günlük yaşamla ilişkilendirebildi mi?",
+      "style": "List Paragraph",
+      "alignment": null
+    }
+  ],
+  "tables": [
+    {
+      "index": 0,
+      "rows": 6,
+      "columns": 2,
+      "sample_data": [
+        [
+          "Gereksinim Türü",
+          "Uygulama Ayrıntısı"
+        ],
+        [
+          "Görme Yetersizliği",
+          "Nesneler dokunma, koku ve işitme etkinliklerinde ön planda tutulur. Çocuğa göz yerine diğer duyularını kullanması teşvik edilir."
+        ],
+        [
+          "İşitme Yetersizliği",
+          "İşitme kutusu çıkarılır veya yerine dokunsal etkinlik eklenir. Görsel destekler (resim kartları) daha sık kullanılır."
+        ]
+      ]
+    }
+  ],
+  "sections": []
+}

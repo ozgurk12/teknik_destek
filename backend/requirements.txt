@@ -1,0 +1,42 @@
+# Core
+fastapi
+uvicorn[standard]
+python-multipart
+python-dotenv
+
+# Database
+asyncpg
+sqlalchemy
+alembic
+psycopg2-binary
+
+# Google Vertex AI
+google-cloud-aiplatform
+google-auth
+google-auth-httplib2
+
+# Validation & Serialization
+pydantic
+pydantic-settings
+
+# CORS & Security
+PyJWT
+passlib[bcrypt]
+bcrypt
+cryptography
+
+# Utils
+httpx
+aiofiles
+pendulum
+
+# Testing
+pytest
+pytest-asyncio
+pytest-cov
+
+# Development
+black
+flake8
+mypy
+pre-commit

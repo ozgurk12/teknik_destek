@@ -1,0 +1,139 @@
+"Konu Anlatım Videosu Metni" Prompt'u 
+
+Merhabalar, senden dijital bir platform olan Edupage Kids için bir "Konu Anlatım Videosu" metni hazırlamanı istiyorum. Bu metin, okul öncesi eğitim programı kapsamında kullanılacak ve Atlas adında bir karakter tarafından seslendirilecektir. 
+
+Sana her seferinde Ders, Konu ve Hedef Yaş Grubu'nu belirteceğim. Senden beklentim, bu bilgilere dayanarak aşağıda detaylandırdığım format ve içerik felsefesine harfiyen uymandır. 
+
+1. GENEL FORMAT 
+
+Metin, aşağıdaki başlıkları ve yapıyı içermelidir: 
+
+[Video Başlığı]  
+
+Ders:  
+
+Hedef Yaş Grubu:  
+
+Video Süresi: (Yaklaşık olarak belirt)  
+
+Karakter: Atlas (Anlatıcı) 
+
+1. BÖLÜM: [Bölüm Başlığı] 
+
+1. Arka Plan (Görsel ve Müzik): 
+
+2. Seslendiren Karakter (Atlas): 
+
+3. Metin (Atlas'ın Anlatımı): 
+
+2. BÖLÜM: [Bölüm Başlığı] 
+
+1. Arka Plan (Görsel ve Müzik): 
+
+2. Seslendiren Karakter (Atlas): 
+
+3. Metin (Atlas'ın Anlatımı): 
+
+ÖNEMLİ FORMAT KURALI: Atlas'ın konuşmaları sırasında, arka planda o an ne olması gerektiğini belirtmek için lütfen **(Parantez içinde, kalın harflerle)** anlık görsel veya eylem yönlendirmeleri ekle. Bu, metnin akışını ve görselle senkronizasyonunu anlamam için kritik öneme sahiptir. 
+
+2. İÇERİK FELSEFESİ VE BEKLENTİLER 
+
+Yaş Grubuna Uygunluk (En Önemli Kural): Vereceğim yaş grubunun (3, 4 veya 5 yaş) bilişsel, dil ve motor gelişim özelliklerini mutlaka göz önünde bulundur. Kullandığın kelimeler, cümlelerin uzunluğu, anlatılan kavramların derinliği ve etkinliklerin karmaşıklığı yaş grubuna göre belirgin şekilde farklılaşmalıdır. 
+
+Hikayeleştirme ve Benzetmeler: Soyut kavramları (sayılar, zıt kavramlar, bilimsel olgular vb.) somutlaştırmak için mutlaka hikayeler, masallar ve çocukların dünyasından basit benzetmeler (örneğin, 3 rakamını kelebek kanadına, ekinoksu tahterevalliye benzetmek gibi) kullan. Konuyu bir ders gibi değil, bir macera veya keşif gibi sun. 
+
+Etkileşim: Video pasif bir izleme deneyimi olmamalıdır. Mutlaka şu etkileşim türlerinden uygun olanları kullan: 
+
+Fiziksel Hareket: Çocukları bedenleriyle veya parmaklarıyla bir şeyler yapmaya teşvik et (havaya çizim yapma, bir hayvanı taklit etme, bedensel oyunlar). 
+
+Bilişsel Katılım: Bilmeceler, "Sizce ne olacak?" gibi tahmin soruları sor. 
+
+Yaratıcı Düşünme: Videonun sonunu mutlaka çocukları hayal kurmaya, kendi fikirlerini üretmeye veya bir problemi çözmeye yönlendiren açık uçlu bir soruyla bitir. 
+
+Bölüm Akışı: 
+
+1. Bölüm: Genellikle konunun tanıtıldığı, temel özelliklerinin verildiği ve basit, somut örneklerle açıklandığı bölümdür. Genellikle fiziksel bir oyun, bilmece veya interaktif bir etkinlikle biter. 
+
+2. Bölüm: Konunun daha derinleştirildiği, günlük yaşamla veya başka alanlarla (sanat, bilim, doğa) bağlantılarının kurulduğu bölümdür. Genellikle yaratıcı düşünmeye teşvik eden bir soruyla biter. 
+
+Atlas'ın Karakteri ve Tonu: Atlas, didaktik bir öğretmen değil; sıcak, sevecen, meraklı bir arkadaş ve keşif lideridir. Sesi her zaman pozitif, teşvik edici ve enerjiktir. 
+
+Dil Kullanımı: 
+
+Asla "Anladınız mı?" gibi sorgulayıcı ifadeler kullanma. Bunun yerine "Harikasınız!", "Bravo size!" gibi pozitif pekiştireçler kullan. 
+
+Doğa olaylarına veya nesnelere olumsuz insani özellikler yükleme (örneğin "yaramaz rüzgar" yerine "güçlü rüzgar" de). 
+
+KONU ANLATIM METNİ İSTERKEN YAPAY ZEKAYA VERİLECEK BİLGİLER 
+
+Konu Anlatım Metni İstek Şablonu 
+
+Lütfen aşağıdaki bilgileri doldurarak bana iletin: 
+
+BÖLÜM 1: TEMEL BİLGİLER (Zorunlu Alanlar) 
+
+Ders: (Örn: Matematik, Erken Okuryazarlık, Müzik, Hareket ve Sağlık vb.) 
+
+Konu: (Örn: 5 Rakamı, Zıt Kavramlar: Uzun-Kısa, "K" Sesi, Daire Şekli vb.) 
+
+Hedef Yaş Grubu: (Lütfen ay olarak belirtin: 36-48 Ay, 48-60 Ay, 60-72 Ay. Bu, içeriğin dilini ve derinliğini ayarlamam için en önemli bilgidir.) 
+
+BÖLÜM 2: İÇERİK DETAYLARI VE ÖZEL İSTEKLER (İsteğe Bağlı Alanlar) (Bu bölümü doldurmanız, metnin tam olarak istediğiniz gibi olmasına yardımcı olur.) 
+
+Video Yapısı: 
+
+Metin kaç bölümden oluşsun? (Genellikle 1 veya 2 bölüm olarak hazırlıyorum.) 
+
+Bölüm Sonu Etkinliği: 
+
+Bölümlerin sonu nasıl bitsin? (Örn: 1. bölüm bir oyunla bitsin, 2. bölüm yaratıcı bir soruyla bitsin. Veya bir bilmece, tekerleme, şarkı, dansa davet gibi özel istekleriniz...) 
+
+Vurgulanmasını İstediğiniz Özel Noktalar: 
+
+Konuyu işlerken özellikle vurgulamamı istediğiniz bir nokta, bir hikaye veya bir benzetme var mı? (Örn: "3 rakamının yazımını kelebek kanadına benzeterek anlat." veya "Ekinoks konusunu tahterevalli analojisi ile açıkla.") 
+
+Kaçınılmasını İstediğiniz Noktalar: 
+
+Metinde kesinlikle kullanmamamı istediğiniz bir kelime, örnek veya tema var mı? (Örn: "Oyundan çıkma olmasın.", "Yaramaz rüzgar gibi betimlemeler kullanma." veya "Domuz karakteri masalda yer almasın.") 
+
+ 
+
+Örnek Doldurulmuş Şablon: 
+
+BÖLÜM 1: TEMEL BİLGİLER (Zorunlu Alanlar) 
+
+Ders: Matematik 
+
+Konu: Üçgen Şekli 
+
+Hedef Yaş Grubu: 60-72 Ay (5 Yaş) 
+
+BÖLÜM 2: İÇERİK DETAYLARI VE ÖZEL İSTEKLER (İsteğe Bağlı Alanlar) 
+
+Video Yapısı: 
+
+2 bölümden oluşsun. 
+
+Bölüm Sonu Etkinliği: 
+
+  
+
+bölüm, çocukların bedenleriyle yaratıcı üçgenler yapmalarını isteyen bir soruyla bitsin. 
+
+  
+
+bölüm, mühendislik ve tasarıma yönelik yaratıcı bir soruyla bitsin. 
+
+Vurgulanmasını İstediğiniz Özel Noktalar: 
+
+Üçgenin sadece tek bir türü olmadığını, farklı kenar uzunluklarına sahip üçgenler olduğunu anlat. 
+
+İki üçgenin birleşerek yeni şekiller (kare gibi) oluşturabildiğini göster. 
+
+  
+
+bölümde üçgenin mühendislikte (köprü, vinç) neden kullanıldığını (sağlamlık) mutlaka belirt. 
+
+Kaçınılmasını İstediğiniz Noktalar: 
+
+"Dedektif" veya "şüpheli" gibi temalar kullanılmasın. Konu daha çok "keşif" temasıyla işlensin. 

@@ -1,0 +1,55 @@
+version: '3.8'
+
+services:
+  backend:
+    build: ./backend
+    container_name: edupage-backend
+    ports:
+      - "8000:8000"
+    environment:
+      - POSTGRES_HOST=host.docker.internal
+      - POSTGRES_PORT=5432
+      - POSTGRES_USER=pgadmin
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      - POSTGRES_DB=edupage_kids
+      - GOOGLE_APPLICATION_CREDENTIALS=/app/credentials/google-service-account.json
+      - VERTEX_AI_PROJECT_ID=${VERTEX_AI_PROJECT_ID}
+      - WORKERS=5
+      - DB_POOL_SIZE=20
+      - DB_MAX_OVERFLOW=30
+      - DB_POOL_TIMEOUT=30
+    volumes:
+      - ./credentials:/app/credentials:ro
+      - ./backend/.env:/app/.env:ro
+    networks:
+      - edupage-network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    deploy:
+      resources:
+        limits:
+          cpus: '2'
+          memory: 2G
+
+  frontend:
+    build: ./frontend
+    container_name: edupage-frontend
+    ports:
+      - "8501:8501"
+    environment:
+      - API_BASE_URL=http://backend:8000/api/v1
+    depends_on:
+      - backend
+    networks:
+      - edupage-network
+    restart: unless-stopped
+    volumes:
+      - ./frontend:/app:ro
+
+networks:
+  edupage-network:
+    driver: bridge

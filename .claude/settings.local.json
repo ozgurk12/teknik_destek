@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(source:*)",
+      "Bash(pip install:*)",
+      "Read(//Users/ozgurk12/Desktop/Etkinlik-Günlük Plan/frontend/src/pages/**)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}
